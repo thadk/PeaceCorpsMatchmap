@@ -70,13 +70,6 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '-tvq%*!rhbajbg)_nn1#ul55w-mhtzdhgisunqc%__ya$my%#l'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
 TEMPLATE_CONTEXT_PROCESSORS = (
   'django.contrib.auth.context_processors.auth',
   'django.core.context_processors.i18n',
@@ -101,10 +94,17 @@ ROOT_URLCONF = 'peacecorps.urls'
 WSGI_APPLICATION = 'peacecorps.wsgi.application'
 
 TEMPLATE_DIRS = (
-	"templates/"
+    "templates/"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+)
+
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 INSTALLED_APPS = (
@@ -155,22 +155,7 @@ LOGGING = {
     }
 }
 
-DEBUG = os.environ.get("DJANGO_DEBUG", False)
 DJANGO_ENV = os.environ.get("DJANGO_ENV")  # PRODUCTION, TEST, or DEV
-TEMPLATE_DEBUG = DEBUG
-
-
-# Parse database configuration from $DATABASE_URL
-if DJANGO_ENV == "PRODUCTION":
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-        }
-else:
-    if "DJANGO_DEBUG" not in os.environ:
-        DEBUG = True
-        print "set DJANGO_DEBUG AND DJANGO_ENV environment variables"
-    from local_settings import *
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

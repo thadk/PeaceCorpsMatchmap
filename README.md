@@ -6,3 +6,28 @@ This is a Django application to link teachers and Peace Corps volunteers through
 It uses the Zinnia weblog framework for Django and Mapbox for the tile service.
 
 This app was first developed at the ID 2013 Harvard Developers for I. Development hackathon in Cambridge, MA
+
+
+To get started:
+===============
+
+Set up a virtualenv:
+
+    virtualenv --no-site-packages <PATH_TO_YOUR_VENV>
+
+Activate your virtualenv:
+
+    <PATH_TO_YOUR_VENV>/bin/activate
+
+Install requirements:
+
+    pip install -r requirements.txt
+
+Customize ``settings/localenv.py.sample`` and copy it to ``settings/localenv.py``
+
+To run the app you will need to set an environment variable to point django
+to the settings:
+
+    export DJANGO_SETTINGS_MODULE=peacecorps.settings.development
+
+Happy Peacecorping!
