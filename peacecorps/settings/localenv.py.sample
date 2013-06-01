@@ -1,0 +1,2 @@
+SQLITE_DB = '/home/seth/sandbox/peacecorps/sqlite.db'
+STATIC_ROOT = '/home/seth/tmp/peacecorps/static'
