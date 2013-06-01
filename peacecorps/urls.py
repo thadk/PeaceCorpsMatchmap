@@ -4,7 +4,11 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
+from core.views import MapView
+
 urlpatterns = patterns('',
+
+    url(r'^1/$', MapView.as_view(), name="map_view"),
     # Examples:
     # url(r'^$', 'peacecorps.views.home', name='home'),
     # url(r'^peacecorps/', include('peacecorps.foo.urls')),

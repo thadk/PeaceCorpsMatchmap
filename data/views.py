@@ -4,6 +4,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.views.generic import TemplateView
+
+class MapView(TemplateView):
+    template_name = "map2.html"
+
+
 def home(request):
     return render_to_response('map.html')
 

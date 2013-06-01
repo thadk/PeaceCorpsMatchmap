@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+  <title>World Wise Schools by Peace Corps</title>
+  <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+  <link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
+  <link href="{% static "css/chosen.css" %}" rel="stylesheet">
+  <link href="{% static "css/styles.css" %}" rel="stylesheet">
+  <!--<link href="styles/refined.css" rel="stylesheet">-->
+  
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    <div class="brand">World Wise Schools</div>
+    <!-- Place all navbar contents you want collapsed within .navbar-collapse.collapse. -->
+    <div class="nav-collapse collapse">
+      <ul class="nav">
+        <li class="search-1">   
+          <form class="navbar-search">
+            <input type="text" class="search-query span3" value="African Dance" placeholder="Search">
+          </form>
+        </li>
+        <li>
+          <div class="dropdown-select">
+            <select data-placeholder="Sector" class="chzn-select" tabindex="2">
+              <option value="" selected="selected">-Sector-</option>
+              <option value="edu">Education</option>
+              <option value="health">Health</option>
+              <option value="ced">Community Economic Development</option>
+              <option value="env">Environment</option>
+              <option value="yid">Youth in Development</option>
+              <option value="agr">Agriculture</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+        </li>   
+        <li>
+          <div class="dropdown-select">
+            <select data-placeholder="Country" class="chzn-select" tabindex="2">
+              <option value="" selected="selected">
+                -Country of Service-
+              </option>
+              {% for country in data.countries %}
+                <option value="{{country.0}}">
+                  {{country.1}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </li>   
+        <li>
+          <div class="dropdown-select">
+            <select data-placeholder="Home State" class="chzn-select" tabindex="2">
+              <option value="" selected="selected">-Home State-</option>
+              {% for state in data.states %}
+                <option value="{{state.0}}">
+                  {{state.1}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </li>   
+      </ul>
+      <div class="rightmost">
+        <div class="btn-group">
+          <button class="btn">SMS</button>
+          <button class="btn">Blog</button>
+        </div>
+      </div>
+    </div><!--/.nav-collapse -->
+    </div><!-- /.navbar-inner -->
+  </div><!-- /.navbar -->
+
+  <div class="sidebar">
+  <div class="sidebar-inner">
+  <ul class="nav nav-list">
+  <div class="overview clearfix"> 
+    <h2 class="title">African Dance</h2> 
+    <!--ul class="clearfix"><li>Population</li> 
+    <li><span class="overview-label">People</span> <span class="overview-value">94,852,030</span></li> 
+    <li><span class="overview-label">Households</span> <span class="overview-value">19,413,575</span></li> 
+    </ul--> 
+  </div> 
+ 
+  
+  <div class="section clearfix maybeactive"> 
+    <h3 class="media"><a href="http://peaceschool.herokuapp.com/post/2013/02/23/fire-mountain/">Fire on the Mountain</a></h3> 
+ 
+    <div class="group first"> 
+    </div>
+ 
+    <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
+article.  The contents of whi ... </h4></div> 
+  </div>
+ 
+  <div class="section clearfix maybeactive"> 
+    <h3 class="media"><a href="http://peaceschool.herokuapp.com/post/2013/02/23/good-leaves/">The Good Leaves</a></h3> 
+ 
+    <div class="group first"></div> 
+ 
+    <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
+article.  The contents of whi ... </h4></div> 
+  </div>
+ 
+  <div class="section clearfix maybeactive"> 
+    <h3 class="media"><a href="http://peaceschool.herokuapp.com/post/2013/02/23/back-action/">Back in Action</a></h3> 
+ 
+    <div class="group first"></div> 
+ 
+    <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
+article.  The contents of whi ...  </h4></div> 
+  </div> 
+ 
+  <div class="section clearfix maybeactive"> 
+
+    <h3 class="media"><a href="http://peaceschool.herokuapp.com/post/2013/02/23/year-island-life/">A Year of Island Life</a></h3> 
+ 
+    <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
+article.  The contents of whi ... </h4></div> 
+  </div> 
+    <div class="section clearfix maybeactive"> 
+
+    <h3 class="media"><a href="http://peaceschool.herokuapp.com/post/2013/02/23/its-been-awhile/">It's been awhile!</a></h3> 
+ 
+    <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
+article.  The contents of whi ... </h4></div> 
+  </div> 
+  </ul>
+  <div id="sidebarfooter"><strong>26 entries</strong> across <strong>13 volunteers</strong> in <strong>1 country</strong> <a href="http://peaceschool.herokuapp.com/admin">[admin]</a> <a href="/register">(applicant)</a></div>
+  </div>
+  </div>
+  
+  
+<div id='map'></div>
+
+
+
+<script>
+  mapbox.auto('map', 'ethanmax.map-drf7bifz');
+</script>
+
+  <script src="{% static "js/tooltip.js" %}"></script>
+  <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+  <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/chosen.js" %}" type="text/javascript"></script>
+  <script type="text/javascript">
+  $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+  </script>
+  <script>
+  $(".chzn-drop").css('top', '50px');
+  </script>
+  
+
+</body>
+</html>
