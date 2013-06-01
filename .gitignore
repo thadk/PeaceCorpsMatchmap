@@ -17,3 +17,7 @@ coverage.html
 .settings
 doc
 *.pyc
+localenv.py
+\#*
+.\#*
+*~
