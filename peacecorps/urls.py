@@ -4,11 +4,11 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from core.views import MapView
+from worldmap.views import MapView
 
 urlpatterns = patterns('',
 
-    url(r'^1/$', MapView.as_view(), name="map_view"),
+    url(r'^$', MapView.as_view(), name="map_view"),
     # Examples:
     # url(r'^$', 'peacecorps.views.home', name='home'),
     # url(r'^peacecorps/', include('peacecorps.foo.urls')),
@@ -32,6 +32,6 @@ urlpatterns = patterns('',
 #    url(r'^blog/', include('zinnia.urls.quick_entry')),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$','data.views.home',name='home'),
+    # url(r'^$','data.views.home',name='home'),
     url(r'^register/$', 'data.views.register', name="register")
 )

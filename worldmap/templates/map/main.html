@@ -15,10 +15,11 @@
   
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
     <div class="brand">World Wise Schools</div>
-    <!-- Place all navbar contents you want collapsed within .navbar-collapse.collapse. -->
     <div class="nav-collapse collapse">
       <ul class="nav">
         <li class="search-1">   
@@ -75,18 +76,21 @@
       </div>
     </div><!--/.nav-collapse -->
     </div><!-- /.navbar-inner -->
-  </div><!-- /.navbar -->
+  </div>
+  <!-- END NAVBAR -->
 
+
+  <!-- SIDEBAR -->
   <div class="sidebar">
   <div class="sidebar-inner">
   <ul class="nav nav-list">
-  <div class="overview clearfix"> 
-    <h2 class="title">African Dance</h2> 
-    <!--ul class="clearfix"><li>Population</li> 
-    <li><span class="overview-label">People</span> <span class="overview-value">94,852,030</span></li> 
-    <li><span class="overview-label">Households</span> <span class="overview-value">19,413,575</span></li> 
-    </ul--> 
-  </div> 
+    <div class="overview clearfix"> 
+      <h2 class="title">African Dance</h2> 
+      <!--ul class="clearfix"><li>Population</li> 
+      <li><span class="overview-label">People</span> <span class="overview-value">94,852,030</span></li> 
+      <li><span class="overview-label">Households</span> <span class="overview-value">19,413,575</span></li> 
+      </ul--> 
+    </div> 
  
   
   <div class="section clearfix maybeactive"> 
@@ -124,13 +128,15 @@ article.  The contents of whi ...  </h4></div>
     <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
 article.  The contents of whi ... </h4></div> 
   </div> 
-    <div class="section clearfix maybeactive"> 
+
+  <div class="section clearfix maybeactive"> 
 
     <h3 class="media"><a href="http://peaceschool.herokuapp.com/post/2013/02/23/its-been-awhile/">It's been awhile!</a></h3> 
  
     <div class="group last"><h4 style="padding-top: 5px; padding-bottom: 5px;">This is a little blurb about this
 article.  The contents of whi ... </h4></div> 
   </div> 
+  
   </ul>
   <div id="sidebarfooter"><strong>26 entries</strong> across <strong>13 volunteers</strong> in <strong>1 country</strong> <a href="http://peaceschool.herokuapp.com/admin">[admin]</a> <a href="/register">(applicant)</a></div>
   </div>
@@ -141,14 +147,16 @@ article.  The contents of whi ... </h4></div>
 
 
 
-<script>
-  mapbox.auto('map', 'ethanmax.map-drf7bifz');
-</script>
+<!-- JAVASCRIPT -->
+  <script>
+    mapbox.auto('map', 'ethanmax.map-drf7bifz');
+  </script>
 
   <script src="{% static "js/tooltip.js" %}"></script>
   <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
   <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
   <script src="{% static "js/chosen.js" %}" type="text/javascript"></script>
+
   <script type="text/javascript">
   $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
   </script>
@@ -156,6 +164,7 @@ article.  The contents of whi ... </h4></div>
   $(".chzn-drop").css('top', '50px');
   </script>
   
+<!-- END JAVASCRIPT -->
 
 </body>
 </html>
