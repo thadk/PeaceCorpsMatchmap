@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class Entry(models.Model):
+    author = models.ForeignKey('auth.User')
+    title = models.CharField(max_length=50)
+    image = models.ImageField()
+    body = models.TextField()
+
