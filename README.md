@@ -25,9 +25,9 @@ Install requirements:
 
 Customize ``settings/localenv.py.sample`` and copy it to ``settings/localenv.py``
 
-To run the app you will need to set an environment variable to point django
-to the settings:
+To run the app in production you will need to set an environment variable to 
+point django to the production settings module:
 
-    export DJANGO_SETTINGS_MODULE=peacecorps.settings.development
+    export DJANGO_SETTINGS_MODULE=peacecorps.settings.production
 
 Happy Peacecorping!
