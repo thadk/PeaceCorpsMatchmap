@@ -15,6 +15,9 @@ DATABASES = {
 
 STATIC_ROOT= ''
 
+MEDIA_ROOT = "media"
+MEDIA_URL = "http://localhost:8000/media/"
+
 try:
     from localenv import *
 except ImportError:
