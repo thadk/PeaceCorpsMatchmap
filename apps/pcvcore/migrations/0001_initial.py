@@ -11,55 +11,51 @@ class Migration(SchemaMigration):
         # Adding model 'PCVProfile'
         db.create_table(u'pcvcore_pcvprofile', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('country', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('sector', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('start_date', self.gf('django.db.models.fields.DateField')()),
-            ('end_date', self.gf('django.db.models.fields.DateField')()),
+            ('is_pcv', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
+            ('country', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
+            ('sector', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
+            ('start_date', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('end_date', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('address', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
+            ('bio', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
         db.send_create_signal(u'pcvcore', ['PCVProfile'])
-
-        # Adding model 'Teacher'
-        db.create_table(u'pcvcore_teacher', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('school', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('grade', self.gf('django.db.models.fields.CharField')(max_length=5)),
-            ('following', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-        ))
-        db.send_create_signal(u'pcvcore', ['Teacher'])
 
         # Adding model 'School'
         db.create_table(u'pcvcore_school', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('state', self.gf('django.db.models.fields.CharField')(max_length=128)),
+            ('city', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
+            ('state', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
             ('school_name', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('zip_code', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('about', self.gf('django.db.models.fields.CharField')(max_length=2048)),
+            ('zip_code', self.gf('django.db.models.fields.CharField')(max_length=10, blank=True)),
+            ('about', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
         db.send_create_signal(u'pcvcore', ['School'])
 
-        # Adding model 'UserProfile'
-        db.create_table(u'pcvcore_userprofile', (
+        # Adding model 'Teacher'
+        db.create_table(u'pcvcore_teacher', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('is_pcv', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('address', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('bio', self.gf('django.db.models.fields.CharField')(max_length=2048)),
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
+            ('school', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pcvcore.School'], null=True, blank=True)),
+            ('grade', self.gf('django.db.models.fields.CharField')(max_length=5, blank=True)),
+            ('following', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='following', null=True, to=orm['auth.User'])),
+            ('address', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
+            ('bio', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
-        db.send_create_signal(u'pcvcore', ['UserProfile'])
+        db.send_create_signal(u'pcvcore', ['Teacher'])
 
 
     def backwards(self, orm):
         # Deleting model 'PCVProfile'
         db.delete_table(u'pcvcore_pcvprofile')
 
-        # Deleting model 'Teacher'
-        db.delete_table(u'pcvcore_teacher')
-
         # Deleting model 'School'
         db.delete_table(u'pcvcore_school')
 
-        # Deleting model 'UserProfile'
-        db.delete_table(u'pcvcore_userprofile')
+        # Deleting model 'Teacher'
+        db.delete_table(u'pcvcore_teacher')
 
 
     models = {
@@ -101,34 +97,35 @@ class Migration(SchemaMigration):
         },
         u'pcvcore.pcvprofile': {
             'Meta': {'object_name': 'PCVProfile'},
-            'country': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'end_date': ('django.db.models.fields.DateField', [], {}),
+            'address': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
+            'bio': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'country': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
+            'end_date': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'sector': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'start_date': ('django.db.models.fields.DateField', [], {})
+            'is_pcv': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'sector': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
+            'start_date': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         },
         u'pcvcore.school': {
             'Meta': {'object_name': 'School'},
-            'about': ('django.db.models.fields.CharField', [], {'max_length': '2048'}),
-            'city': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
+            'about': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'school_name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'state': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'zip_code': ('django.db.models.fields.CharField', [], {'max_length': '10'})
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
+            'zip_code': ('django.db.models.fields.CharField', [], {'max_length': '10', 'blank': 'True'})
         },
         u'pcvcore.teacher': {
             'Meta': {'object_name': 'Teacher'},
-            'following': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
-            'grade': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
+            'address': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
+            'bio': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'following': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'following'", 'null': 'True', 'to': u"orm['auth.User']"}),
+            'grade': ('django.db.models.fields.CharField', [], {'max_length': '5', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'school': ('django.db.models.fields.CharField', [], {'max_length': '128'})
-        },
-        u'pcvcore.userprofile': {
-            'Meta': {'object_name': 'UserProfile'},
-            'address': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'bio': ('django.db.models.fields.CharField', [], {'max_length': '2048'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_pcv': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
+            'is_pcv': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'school': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pcvcore.School']", 'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         }
     }
 
