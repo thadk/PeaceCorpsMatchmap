@@ -39,9 +39,23 @@ class BlogJSON(JSONResponseMixin, View):
 
 class BlogJSON(JSONResponseMixin, AjaxResponseMixin, ListView):
     """
-    filter options:
+    pagination is available, but not tested yet
+    filter format:
+    /map/get_blogs?country=Uganda&sector=Environment
+    get_queryset can hold the filter logic, check out the commented
+    out (untested) example.
     """
+    # paginate_by = 5
     model = Entry
+
+    def get_queryset(self):
+        entries = super(BlogJSON, self).get_queryset()
+        filters = self.request.REQUEST
+        print filters
+        # if "country" in filters:
+        #     # something like this...
+        #     entries = entries.filter('author__pcvprofile'=filters['country'])
+        return entries
 
     def serialize_pcv(self, user):
         return {
