@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+<head>
+  <title>
+    {% block title %}MatchMap{% endblock %}
+  </title>
+
+{% block css %}
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+  <style>
+    body {
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+  </style>
+{% endblock css %}
+
+</head>
+
+
+<body>
+
+{% block canvas %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="#">MatchMap</a>
+      <div class="nav-collapse collapse">
+        {% comment %}
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        {% endcomment %}
+        <a type="submit" class="pull-right btn">Log Out</a>
+      </div>
+    </div>
+  </div>
+</div> <!-- end navbar -->
+
+{% block content %}
+page content goes here
+{% endblock content %}
+
+{% endblock canvas %}
+<!-- javascript -->
+  <script src="{% static "js/jquery-1.10.1.min.js" %}"></script>
+  <script src="{% static "js/bootstrap.js" %}"></script>
+</body>
+
+</html>

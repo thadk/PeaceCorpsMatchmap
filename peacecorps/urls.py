@@ -10,6 +10,8 @@ urlpatterns = patterns('',
 
     url(r'^$', MapView.as_view(), name="map_view"),
 
+    url(r'^user/', include('apps.pcvcore.urls')),
+
     # Examples:
     # url(r'^$', 'peacecorps.views.home', name='home'),
     # url(r'^peacecorps/', include('peacecorps.foo.urls')),
