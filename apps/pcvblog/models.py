@@ -6,7 +6,7 @@ class Entry(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to="blog-images", null=True, blank=True)
-    slug = models.SlugField(db_index=True)
+    slug = models.SlugField(db_index=True, blank=True)
     body = models.TextField()
     post_time = models.DateTimeField(auto_now_add=True)
 
@@ -22,3 +22,6 @@ class Entry(models.Model):
 
     def get_absolute_url(self):
         return reverse('entry_list')
+
+    def __unicode__(self):
+        return "%s - %s" % (self.title, self.author)

@@ -1,7 +1,8 @@
 from django.views.generic import TemplateView, ListView, View
 
-from braces.views import JSONResponseMixin
+from braces.views import JSONResponseMixin, AjaxResponseMixin
 
+from apps.pcvblog.models import Entry
 import data_options, sample_json
 
 class MapView(TemplateView):
@@ -35,3 +36,37 @@ class BlogJSON(JSONResponseMixin, View):
             'posts': sample_json.posts
         }
         return self.render_json_response(context)
+
+class BlogJSON(JSONResponseMixin, AjaxResponseMixin, ListView):
+    """
+    filter options:
+    """
+    model = Entry
+
+    def serialize_pcv(self, user):
+        return {
+            "username": user.username,
+            "name": "%s %s" % (user.first_name, user.last_name),
+            # "sector": user.pcvprofile.sector,
+            # "country": user.pcvprofile.country,
+        }
+
+    def serialize_blog_entries(self):
+        queryset = self.get_queryset()
+        entries = []
+        for entry in queryset:
+            json_entry = {
+                "title": entry.title,
+                "text": entry.body,
+                "slug": entry.slug,
+                "date": entry.post_time,
+                "user": self.serialize_pcv(entry.author),
+            }
+            entries.append(json_entry)
+        return entries
+
+    def dispatch(self, request, *args, **kwargs):
+        json_dict = {
+            "posts": self.serialize_blog_entries(),
+        }
+        return self.render_json_response(json_dict)
