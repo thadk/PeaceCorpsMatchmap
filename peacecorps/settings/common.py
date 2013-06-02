@@ -116,8 +116,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'data',
+    'apps.pcvblog',
     'tagging',
     'mptt',
+    'south',
     'zinnia',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

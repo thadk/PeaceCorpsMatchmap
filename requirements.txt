@@ -11,3 +11,4 @@ django-xmlrpc==0.1.5
 pyparsing==1.5.7
 pytz==2013b
 wsgiref==0.1.2
+South==0.8.1
