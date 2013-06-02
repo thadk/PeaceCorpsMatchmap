@@ -10,6 +10,7 @@ class DebugMixin(object):
         context = super(DebugMixin, self).get_context_data(**kwargs)
         print "#########################"
         print "CONTEXT SENT TO TEMPLATE:"
+        import pdb; pdb.set_trace()
         for k, v in context.items():
             print "  %s: %s" % (k, v)
         print "DON'T FORGET TO REMOVE THIS MIXIN AFTER TESTING THE VIEW"

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if not form.instance %}
+{% if not form.instance.pk %}
 <h3>Create a new entry</h3>
 <form action="{% url "entry_create" %}" method="post">
 {% else %}
