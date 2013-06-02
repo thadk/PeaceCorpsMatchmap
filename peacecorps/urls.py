@@ -1,4 +1,7 @@
+import os
+
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 from django.contrib import admin
 
 from apps.worldmap.views import MapView
@@ -27,3 +30,6 @@ urlpatterns = patterns('',
     # url(r'^register/$', 'data.views.register', name="register")
     url(r'^blog/', include('apps.pcvblog.urls')),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('', url(r'^media/(.*)$', 'django.views.static.serve', kwargs={'document_root': settings.MEDIA_ROOT}), )

@@ -13,6 +13,14 @@ from apps.pcvblog.forms import EntryForm
 class BlogLoginRequiredMixin(LoginRequiredMixin):
     login_url = reverse_lazy('login')
 
+class ImageUploadMixin(object):
+    def get_form_kwargs(self):
+        import pdb; pdb.set_trace()
+        kwargs = super(ImageUploadMixin, self).get_form_kwargs()
+        if self.request.FILES:
+            kwargs['files'] = self.request.FILES
+        return kwargs
+
 
 # The delete class requires a confirm template which we will do in JS
 def entry_delete(request, entry_pk):
@@ -24,7 +32,7 @@ def entry_delete(request, entry_pk):
         return HttpResponseRedirect(reverse_lazy('entry_list'))
 
 
-class EntryCreate(BlogLoginRequiredMixin, UserFormKwargsMixin, CreateView):
+class EntryCreate(ImageUploadMixin, BlogLoginRequiredMixin, UserFormKwargsMixin, CreateView):
     model = Entry
     form_class = EntryForm
 
@@ -34,7 +42,7 @@ class EntryCreate(BlogLoginRequiredMixin, UserFormKwargsMixin, CreateView):
         return super(EntryCreate, self).form_valid(form)
 
 
-class EntryUpdate(BlogLoginRequiredMixin, UserFormKwargsMixin, UpdateView):
+class EntryUpdate(ImageUploadMixin, BlogLoginRequiredMixin, UserFormKwargsMixin, UpdateView):
     model = Entry
     form_class = EntryForm
 
