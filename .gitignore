@@ -22,3 +22,4 @@ localenv.py
 .\#*
 *~
 *.db
+*.swp
