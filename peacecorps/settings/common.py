@@ -76,7 +76,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   'django.core.context_processors.request',
   'django.core.context_processors.media',
   'django.core.context_processors.static',
-  'zinnia.context_processors.version',) # Optional
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -116,16 +116,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'data',
-    'apps.pcvblog',
-    'tagging',
-    'mptt',
-    'south',
-    'zinnia',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'worldmap',
+    'south',
+    'taggit',
+    'apps.worldmap',
+    'apps.pcvblog',
+    'apps.pcvcore',
 )
 
 # A sample logging configuration. The only tangible logging
