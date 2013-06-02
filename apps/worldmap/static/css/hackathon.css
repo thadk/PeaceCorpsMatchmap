@@ -15,6 +15,10 @@ body{
   background-color: #007379;
 }
 
+.navbar {
+  background-color: #E2DFCD;
+}
+
 .search-section {
   /* background-color: #E2DFCD;
   border: #C16832 1px dashed; */
@@ -34,13 +38,19 @@ body{
   z-index:-100;
 }
 
-#sidebar {
+.sidebar {
   background-color: #E2DFCD;
   position: absolute;
+  padding: 150px 10px 0;
   width: 25%;
   z-index: 100;
   right: 0;
   height: 100%;
   left: auto;
   box-shadow: -5px 5px 12px #777;
+}
+
+.sidebar.active {
+  width: 42%;
+  max-width: 600px;
 }
