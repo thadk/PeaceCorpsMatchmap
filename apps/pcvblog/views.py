@@ -1,24 +1,32 @@
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+
+from braces.views import LoginRequiredMixin, UserFormKwargsMixin
+
 
 from apps.pcvblog.models import Entry
 from apps.pcvblog.forms import EntryForm
 
+class BlogLoginRequiredMixin(LoginRequiredMixin):
+    login_url = reverse_lazy('login')
+
+
 # The delete class requires a confirm template which we will do in JS
 def entry_delete(request, entry_pk):
     entry = get_object_or_404(Entry, pk=entry_pk)
-    entry.delete()
-    return HttpResponseRedirect(reverse_lazy('entry_list'))
+    if not entry.author == request.user:
+        return HttpResponse('Unauthorized', status=401)
+    else:
+        entry.delete()
+        return HttpResponseRedirect(reverse_lazy('entry_list'))
 
 
-class EntryCreate(CreateView):
+class EntryCreate(BlogLoginRequiredMixin, UserFormKwargsMixin, CreateView):
     model = Entry
     form_class = EntryForm
-
-    ## TODO: Login required
 
     def form_valid(self, form):
         ## TODO: Make sure you can only edit your own entry
@@ -26,12 +34,12 @@ class EntryCreate(CreateView):
         return super(EntryCreate, self).form_valid(form)
 
 
-class EntryUpdate(UpdateView):
+class EntryUpdate(BlogLoginRequiredMixin, UserFormKwargsMixin, UpdateView):
     model = Entry
     form_class = EntryForm
 
 
-class EntryList(ListView):
+class EntryList(ListView, UserFormKwargsMixin):
     model = Entry
     context_object_name = "entry_list"
     template_name = "templates/entry_list.html"
