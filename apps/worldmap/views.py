@@ -26,6 +26,9 @@ class MapView(TemplateView):
 
 
 class BlogJSON(JSONResponseMixin, View):
+    """
+    filter options:
+    """
 
     def get(self, request, *args, **kwargs):
         context = {
