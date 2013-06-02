@@ -10,6 +10,8 @@ class PCVProfile(models.Model):
     end_date = models.DateField(blank=True, null=True)
     address = models.CharField(max_length=128, blank=True)
     bio = models.TextField(blank=True)
+    def __unicode__(self):
+        return self.user.username
 
 class School(models.Model):
     city = models.CharField(max_length=128, blank=True)
@@ -17,17 +19,15 @@ class School(models.Model):
     school_name = models.CharField(max_length=128)
     zip_code = models.CharField(max_length=10, blank=True)
     about = models.TextField(blank=True)
+    def __unicode__(self):
+        return self.school_name
 
 class Teacher(models.Model):
-    is_pcv = models.BooleanField(default=False)
     user = models.OneToOneField('auth.User')
     school = models.ForeignKey(School, blank=True, null=True)
     grade = models.CharField(max_length=5, blank=True)
     following = models.ForeignKey('auth.User', related_name='following', blank=True, null=True)
     address = models.CharField(max_length=128, blank=True)
     bio = models.TextField(blank=True)
-
-# class UserProfile(models.Model):
-#     is_pcv = models.BooleanField(default=False)
-#     address = models.CharField(max_length=128, blank=True)
-#     bio = models.TextField(blank=True)
+    def __unicode__(self):
+        return self.user.username
