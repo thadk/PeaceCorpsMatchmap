@@ -23,7 +23,6 @@ class School(models.Model):
         return self.school_name
 
 class Teacher(models.Model):
-    is_pcv = models.BooleanField(default=False)
     user = models.OneToOneField('auth.User')
     school = models.ForeignKey(School, blank=True, null=True)
     grade = models.CharField(max_length=5, blank=True)
