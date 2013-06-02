@@ -134,18 +134,18 @@ STATES = (
 
 GRADES = (
     ("K", "Kindergarden"),
-    ("1", "First grade"),
-    ("2", "Second grade"),
-    ("3", "Third grade"),
-    ("4", "Fourth grade"),
-    ("5", "Fifth grade"),
-    ("6", "Sixth grade"),
-    ("7", "Seventh grade"),
-    ("8", "Eighth grade"),
-    ("9", "Ninth grade"),
-    ("10", "Tenth grade"),
-    ("11", "Eleventh grade"),
-    ("12", "Twelfth grade")
+    ("1", "1st Grade"),
+    ("2", "2nd Grade"),
+    ("3", "3rd Grade"),
+    ("4", "4th Grade"),
+    ("5", "5th Grade"),
+    ("6", "6th Grade"),
+    ("7", "7th Grade"),
+    ("8", "8th Grade"),
+    ("9", "9th Grade"),
+    ("10", "10th Grade"),
+    ("11", "11th Grade"),
+    ("12", "12th Grade")
 )
 
 SECTORS = (
@@ -168,5 +168,6 @@ KEYWORDS = (
     ("Cli", "Climate"),
     ("Ani", "Animals"),
     ("Fo", "Food"),
-    ("Ag", "Agriculture")
+    ("Ag", "Agriculture"),
+    ("Be", "Beekeeping")
 )

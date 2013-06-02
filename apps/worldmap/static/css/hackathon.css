@@ -1,0 +1,56 @@
+/*
+
+COLORS, in lieu of SASS:
+
+dark_blue: #007379;
+mid_blue:  #00808D;
+neutral:   #E2DFCD;
+light_brn: #C16832;
+dark_brn:  #9E5527;
+
+*/
+
+
+body{
+  background-color: #007379;
+}
+
+.navbar {
+  background-color: #E2DFCD;
+}
+
+.search-section {
+  /* background-color: #E2DFCD;
+  border: #C16832 1px dashed; */
+  float:left;
+  width:30%;
+  margin: 0 10px 5px;
+}
+
+.search-section button, .search-section select, .search-section input{
+  width: 90%;
+  margin: 5px auto;
+}
+
+#map { 
+  position: absolute;
+  top:0; bottom:0; left: 0; right: 0; width:100%; 
+  z-index:-100;
+}
+
+.sidebar {
+  background-color: #E2DFCD;
+  position: absolute;
+  padding: 150px 10px 0;
+  width: 25%;
+  z-index: 100;
+  right: 0;
+  height: 100%;
+  left: auto;
+  box-shadow: -5px 5px 12px #777;
+}
+
+.sidebar.active {
+  width: 42%;
+  max-width: 600px;
+}
