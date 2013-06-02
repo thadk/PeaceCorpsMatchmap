@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', MapView.as_view(), name="map_view"),
+    url(r'^map/', include('apps.worldmap.urls')),
 
     url(r'^user/', include('apps.pcvcore.urls')),
 

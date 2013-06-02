@@ -34,22 +34,21 @@
       </button>
       <a class="brand" href="#">MatchMap</a>
       <div class="nav-collapse collapse">
-        {% comment %}
-        <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        {% endcomment %}
-        <a type="submit" class="pull-right btn">Log Out</a>
+        {% if not user.is_authenticated %}
+        What are you doing here!!?!
+        {% else %}
+        <a href="{% url "logout" %}" type="submit" class="pull-right btn">Log Out</a>
+        {% endif %}
       </div>
     </div>
   </div>
 </div> <!-- end navbar -->
 
+<div class="container">
 {% block content %}
 page content goes here
 {% endblock content %}
+</div>
 
 {% endblock canvas %}
 <!-- javascript -->
