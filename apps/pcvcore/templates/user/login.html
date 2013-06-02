@@ -33,6 +33,10 @@
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+      .errors {
+        color: red;
+        text-align: center;
+      }
 
     </style>
 {% endblock css %}
@@ -40,14 +44,17 @@
 
 {% block canvas %}
   <div class="container">
-
-    <form class="form-signin">
+    {% if form.errors %}
+    <div class="errors">Your username and password didn't match. Please try again.</div>
+    {% endif %}
+    <form class="form-signin" method="post" action="{% url 'django.contrib.auth.views.login' %}">{% csrf_token %}
       <h2 class="form-signin-heading">Please sign in</h2>
-      <input type="text" class="input-block-level" placeholder="Email address">
-      <input type="password" class="input-block-level" placeholder="Password">
+      <input id="id_username" name="username" type="text" class="input-block-level" placeholder="Email address">
+      <input id="id_password" name="password" type="password" class="input-block-level" placeholder="Password">
       <label class="checkbox">
         <input type="checkbox" value="remember-me"> Remember me
       </label>
+      <input type="hidden" name="next" value="{{ next }}" />
       <button class="btn btn-large btn-primary" type="submit">Sign in</button>
     </form>
 
