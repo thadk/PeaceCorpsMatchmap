@@ -7,6 +7,8 @@ It uses the Zinnia weblog framework for Django and Mapbox for the tile service.
 
 This app was first developed at the ID 2013 Harvard Developers for I. Development hackathon in Cambridge, MA
 
+Development was then continued at the Random Hacks of Kindness Boston Hackathon on June 1st and 2nd.
+
 
 To get started:
 ===============
