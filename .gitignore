@@ -24,3 +24,4 @@ localenv.py
 *.db
 *.swp
 /peace
+media

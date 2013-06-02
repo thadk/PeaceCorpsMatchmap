@@ -3,10 +3,10 @@
 
 {% if not form.instance.pk %}
 <h3>Create a new entry</h3>
-<form action="{% url "entry_create" %}" method="post">
+<form action="{% url "entry_create" %}" method="post" enctype="multipart/form-data">
 {% else %}
 <h3>Edit entry</h3>
-<form action="{% url "entry_update" form.instance.pk %}" method="post">
+<form action="{% url "entry_update" form.instance.pk %}" method="post" enctype="multipart/form-data">
 {% endif %}
     {% csrf_token %}
     {{ form.as_p }}

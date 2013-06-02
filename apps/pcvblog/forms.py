@@ -8,6 +8,7 @@ from apps.pcvblog.models import Entry
 
 class EntryForm(UserKwargModelFormMixin, forms.ModelForm):
     def clean(self, *args, **kwargs):
+        #self.image = kwargs.pop('image', None)
         if self.instance.pk:
             if not self.instance.author == self.user:
                 raise ValidationError('You can only edit your own post')
@@ -17,4 +18,4 @@ class EntryForm(UserKwargModelFormMixin, forms.ModelForm):
 
     class Meta:
         model = Entry
-        fields = ('title', 'body')
+        fields = ('title', 'body', 'image')
