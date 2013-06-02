@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>My Entries</h3>
+{% if entry_list %}
+<table id="entry_list">
+  {% for entry in entry_list %}
+  <tr>
+    <td>{{ entry.title }}</td>
+    <td>{{ entry.abstract }}</td>
+    <td><a href="{% url "entry_update" entry.pk %}">edit</a></td>
+    <td><a class="delete_link" href="{% url "entry_delete" entry.pk %}">delete</a></td>
+    <!-- TODO: Add thumbnail -->
+  </tr>
+  {% endfor %}
+</table>
+{% if is_paginated %}
+<div class="pagination">
+  <span class="page-links">
+    {% if page_obj.has_previous %}
+    <a href="{% url "entry_list" %}?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="page-current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+    <a href="{% url "entry_list" %}?page={{ page_obj.next_page_number }}">next</a>
+    {% endif %}
+  </span>
+</div>
+{% endif %}
+{% else %}
+<p>You haven't written any entries yet!!! :(</p>
+{% endif %}
+<a class="new_entry" href="{% url "entry_create" %}">New Entry</a>
+{% endblock %}
