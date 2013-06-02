@@ -159,3 +159,5 @@ DJANGO_ENV = os.environ.get("DJANGO_ENV")  # PRODUCTION, TEST, or DEV
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+LOGIN_URL = '/user/login'
