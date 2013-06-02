@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if not form.instance %}
+<h3>Create a new entry</h3>
+<form action="{% url "entry_create" %}" method="post">
+{% else %}
+<h3>Edit entry</h3>
+<form action="{% url "entry_update" form.instance.pk %}" method="post">
+{% endif %}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Save Entry" /></p>
+</form>
+
+{% endblock %}
