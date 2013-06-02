@@ -1,26 +1,33 @@
 from django.db import models
 from apps.worldmap import data_options
 
-# Create your models here.
 class PCVProfile(models.Model):
-    country = models.CharField(choices=data_options.COUNTRIES, max_length=128)
-    sector = models.CharField(choices=data_options.SECTORS, max_length=128)
-    start_date = models.DateField()
-    end_date = models.DateField()
-
-class Teacher(models.Model):
-    school = models.CharField(max_length=128)
-    grade = models.CharField(max_length=5)
-    following = models.ForeignKey('auth.User')
+    is_pcv = models.BooleanField(default=True)
+    user = models.OneToOneField('auth.User')
+    country = models.CharField(choices=data_options.COUNTRIES, max_length=128, blank=True)
+    sector = models.CharField(choices=data_options.SECTORS, max_length=128, blank=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    address = models.CharField(max_length=128, blank=True)
+    bio = models.TextField(blank=True)
 
 class School(models.Model):
-    city = models.CharField(max_length=128)
-    state = models.CharField(choices=data_options.STATES, max_length=128)
+    city = models.CharField(max_length=128, blank=True)
+    state = models.CharField(choices=data_options.STATES, max_length=128, blank=True)
     school_name = models.CharField(max_length=128)
-    zip_code = models.CharField(max_length=10)
-    about = models.TextField()
+    zip_code = models.CharField(max_length=10, blank=True)
+    about = models.TextField(blank=True)
 
-class UserProfile(models.Model):
-    is_pcv = models.BooleanField()
-    address = models.CharField(max_length=128)
-    bio = models.TextField()
+class Teacher(models.Model):
+    is_pcv = models.BooleanField(default=False)
+    user = models.OneToOneField('auth.User')
+    school = models.ForeignKey(School, blank=True, null=True)
+    grade = models.CharField(max_length=5, blank=True)
+    following = models.ForeignKey('auth.User', related_name='following', blank=True, null=True)
+    address = models.CharField(max_length=128, blank=True)
+    bio = models.TextField(blank=True)
+
+# class UserProfile(models.Model):
+#     is_pcv = models.BooleanField(default=False)
+#     address = models.CharField(max_length=128, blank=True)
+#     bio = models.TextField(blank=True)

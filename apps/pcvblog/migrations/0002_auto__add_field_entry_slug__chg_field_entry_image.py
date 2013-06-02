@@ -8,20 +8,22 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding field 'Entry.slug'
+        db.add_column(u'pcvblog_entry', 'slug',
+                      self.gf('django.db.models.fields.SlugField')(default='None', max_length=50),
+                      keep_default=False)
 
-        # Changing field 'School.about'
-        db.alter_column(u'pcvcore_school', 'about', self.gf('django.db.models.fields.TextField')())
 
-        # Changing field 'UserProfile.bio'
-        db.alter_column(u'pcvcore_userprofile', 'bio', self.gf('django.db.models.fields.TextField')())
+        # Changing field 'Entry.image'
+        db.alter_column(u'pcvblog_entry', 'image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True))
 
     def backwards(self, orm):
+        # Deleting field 'Entry.slug'
+        db.delete_column(u'pcvblog_entry', 'slug')
 
-        # Changing field 'School.about'
-        db.alter_column(u'pcvcore_school', 'about', self.gf('django.db.models.fields.CharField')(max_length=2048))
 
-        # Changing field 'UserProfile.bio'
-        db.alter_column(u'pcvcore_userprofile', 'bio', self.gf('django.db.models.fields.CharField')(max_length=2048))
+        # User chose to not deal with backwards NULL issues for 'Entry.image'
+        raise RuntimeError("Cannot reverse this migration. 'Entry.image' and its values cannot be restored.")
 
     models = {
         u'auth.group': {
@@ -60,37 +62,16 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'pcvcore.pcvprofile': {
-            'Meta': {'object_name': 'PCVProfile'},
-            'country': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'end_date': ('django.db.models.fields.DateField', [], {}),
+        u'pcvblog.entry': {
+            'Meta': {'object_name': 'Entry'},
+            'author': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
+            'body': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'sector': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'start_date': ('django.db.models.fields.DateField', [], {})
-        },
-        u'pcvcore.school': {
-            'Meta': {'object_name': 'School'},
-            'about': ('django.db.models.fields.TextField', [], {}),
-            'city': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'school_name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'state': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'zip_code': ('django.db.models.fields.CharField', [], {'max_length': '10'})
-        },
-        u'pcvcore.teacher': {
-            'Meta': {'object_name': 'Teacher'},
-            'following': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
-            'grade': ('django.db.models.fields.CharField', [], {'max_length': '5'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'school': ('django.db.models.fields.CharField', [], {'max_length': '128'})
-        },
-        u'pcvcore.userprofile': {
-            'Meta': {'object_name': 'UserProfile'},
-            'address': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'bio': ('django.db.models.fields.TextField', [], {}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_pcv': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
+            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'post_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         }
     }
 
-    complete_apps = ['pcvcore']
+    complete_apps = ['pcvblog']
