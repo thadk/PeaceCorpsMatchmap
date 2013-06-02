@@ -18,9 +18,9 @@ class School(models.Model):
     state = models.CharField(choices=data_options.STATES, max_length=128)
     school_name = models.CharField(max_length=128)
     zip_code = models.CharField(max_length=10)
-    about = models.CharField(max_length=2048)
+    about = models.TextField()
 
 class UserProfile(models.Model):
     is_pcv = models.BooleanField()
     address = models.CharField(max_length=128)
-    bio = models.CharField(max_length=2048)
+    bio = models.TextField()
