@@ -7,7 +7,8 @@ It uses the Zinnia weblog framework for Django and Mapbox for the tile service.
 
 This app was first developed at the ID 2013 Harvard Developers for I. Development hackathon in Cambridge, 
 
-It was further refined at the National Day of Civic Hacking in Boston, MA using this hackpad:
+It was further refined at the National Day of Civic Hacking in Boston, MA using this reference page and this hackpad:
+http://hackforchange.org/challenge/peace-corps-matchmap
 https://hackforchange.hackpad.com/CHALLENGE-Peace-Corps-MatchMap-julyNLxkEGy
 
 To get started:
