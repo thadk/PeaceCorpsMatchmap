@@ -5,8 +5,10 @@ This is a Django application to link teachers and Peace Corps volunteers through
 
 It uses the Zinnia weblog framework for Django and Mapbox for the tile service.
 
-This app was first developed at the ID 2013 Harvard Developers for I. Development hackathon in Cambridge, MA
+This app was first developed at the ID 2013 Harvard Developers for I. Development hackathon in Cambridge, 
 
+It was further refined at the National Day of Civic Hacking in Boston, MA using this hackpad:
+https://hackforchange.hackpad.com/CHALLENGE-Peace-Corps-MatchMap-julyNLxkEGy
 
 To get started:
 ===============
