@@ -15,7 +15,6 @@ class BlogLoginRequiredMixin(LoginRequiredMixin):
 
 class ImageUploadMixin(object):
     def get_form_kwargs(self):
-        import pdb; pdb.set_trace()
         kwargs = super(ImageUploadMixin, self).get_form_kwargs()
         if self.request.FILES:
             kwargs['files'] = self.request.FILES

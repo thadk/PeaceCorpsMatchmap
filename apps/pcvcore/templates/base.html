@@ -18,7 +18,12 @@
     }
   </style>
 {% endblock css %}
+{% block extracss %}
+{% endblock extracss %}
 
+{% block extrajs %}
+{# For additional javascript (not that we have any common js right now...#}
+{% endblock extrajs %}
 </head>
 
 
@@ -53,7 +58,6 @@ page content goes here
 
 {% endblock canvas %}
 <!-- javascript -->
-  <script src="{% static "js/jquery-1.10.1.min.js" %}"></script>
   <script src="{% static "js/bootstrap.js" %}"></script>
 </body>
 

@@ -2,6 +2,8 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.db import models
 
+from taggit.managers import TaggableManager
+
 from apps.worldmap import data_options
 
 class Entry(models.Model):
@@ -13,6 +15,7 @@ class Entry(models.Model):
     post_time = models.DateTimeField(auto_now_add=True)
     grade_level = models.CharField(choices=data_options.GRADES, max_length=128, blank=True, null=True, default="")
 
+    tags = TaggableManager()
 
     @property
     def abstract(self):
