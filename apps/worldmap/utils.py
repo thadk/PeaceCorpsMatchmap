@@ -1,5 +1,6 @@
 
 from braces.views import JSONResponseMixin, AjaxResponseMixin
+import data_options
 
 
 class Ajaxify(JSONResponseMixin, AjaxResponseMixin):
@@ -28,3 +29,14 @@ class Ajaxify(JSONResponseMixin, AjaxResponseMixin):
             }
             entries.append(json_entry)
         return entries
+
+
+def get_map_data():
+    data = {
+        "countries": data_options.COUNTRIES,
+        "states":    data_options.STATES,
+        "sectors":   data_options.SECTORS,
+        "keywords":  data_options.KEYWORDS,
+        "grades":    data_options.GRADES
+    }
+    return data

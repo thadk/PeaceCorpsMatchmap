@@ -11,20 +11,12 @@ $(function() {
     alert(str);
   });
 
-  var countries = ["Albania", "Armenia", "Azerbaijan", "Belize", "Benin", 
-                  "Botswana", "Bulgaria", "Burkina Faso", "Cambodia", "Cameroon", 
-                  "Cape Verde", "China", "Colombia", "Costa Rica", "Dominican Republic", 
-                  "Eastern Caribbean", "El Salvador", "Ecuador", "Ethopia", "Fiji", 
-                  "Georgia", "Ghana", "Guatemala", "Guinea", "Guyana", "Honduras", 
-                  "Indonesia", "Jamaica", "Jordan", "Kazakhstan", "Kenya", 
-                  "Kyrgyz Republic", "Lesoto", "Liberia", "Macedonia", "Madagascar", 
-                  "Malawi", "Mali", "Mexico", "Micronesia and Polynesia", "Moldova", 
-                  "Mongolia", "Morocco", "Mozambique", "Namibia", "Nepal", "Nicaragua", 
-                  "Niger", "Panama", "Paraguay", "Peru", "Philipines", "Romania", 
-                  "Rwanda", "Samoa", "Senegal", "Sierra Leone", "South Africa", 
-                  "Suriname", "Swaziland", "Tanzania", "The Gambia", "Thailand", 
-                  "Togo", "Tnoga", "Uganda", "Ukraine", "Vanatu", "Zambia"];
-
-  $('#searchbox').typeahead({source: countries});
+  $.getJSON('map/get_data_options', function(data) {
+    var countries = []
+    $.each(data["data"]["countries"], function(key, val){
+        countries.push(val[1]);
+    });
+    $('#searchbox').typeahead({source: countries});
+  });
 
 });

@@ -2,28 +2,27 @@ from django.views.generic import TemplateView, ListView, View
 
 from apps.pcvblog.models import Entry
 
-from .utils import Ajaxify
-import data_options
+from .utils import Ajaxify, get_map_data
 
 class MapView(TemplateView):
 
     template_name = "map/main.html"
 
-    def get_map_data(self):
-        data = {
-            "countries": data_options.COUNTRIES,
-            "states":    data_options.STATES,
-            "sectors":   data_options.SECTORS,
-            "keywords":  data_options.KEYWORDS,
-            "grades":    data_options.GRADES
-        }
-        return data
-
-
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        context["data"] = self.get_map_data()
+        context["data"] = get_map_data()
         return context
+
+
+
+class DataOptionsJSON(Ajaxify, View):
+    def dispatch(self, request, *args, **kwargs):
+        json_dict = {
+            "data": get_map_data()
+        }
+        return self.render_json_response(json_dict)
+
+
 
 
 class BlogJSON(Ajaxify, ListView):
