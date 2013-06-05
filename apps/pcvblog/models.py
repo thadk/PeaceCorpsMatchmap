@@ -4,6 +4,8 @@ from django.db import models
 
 from taggit.managers import TaggableManager
 
+from apps.worldmap import data_options
+
 class Entry(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=50)
@@ -11,6 +13,7 @@ class Entry(models.Model):
     slug = models.SlugField(db_index=True, blank=True)
     body = models.TextField()
     post_time = models.DateTimeField(auto_now_add=True)
+    grade_level = models.CharField(choices=data_options.GRADES, max_length=128, blank=True, null=True, default="")
 
     tags = TaggableManager()
 
