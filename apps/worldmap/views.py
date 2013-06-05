@@ -1,8 +1,8 @@
 from django.views.generic import TemplateView, ListView, View
 
-from braces.views import JSONResponseMixin, AjaxResponseMixin
-
 from apps.pcvblog.models import Entry
+
+from .utils import Ajaxify
 import data_options
 
 class MapView(TemplateView):
@@ -26,7 +26,7 @@ class MapView(TemplateView):
         return context
 
 
-class BlogJSON(JSONResponseMixin, AjaxResponseMixin, ListView):
+class BlogJSON(Ajaxify, ListView):
     """
     pagination is available, but not tested yet
     filter format:
@@ -41,31 +41,22 @@ class BlogJSON(JSONResponseMixin, AjaxResponseMixin, ListView):
         entries = super(BlogJSON, self).get_queryset()
         filters = self.request.REQUEST
         print filters
-        # if "country" in filters:
-        #     # something like this...
-        #     entries = entries.filter('author__pcvprofile'=filters['country'])
-        return entries
-
-    def serialize_pcv(self, user):
-        return {
-            "username": user.username,
-            "name": "%s %s" % (user.first_name, user.last_name),
-            # "sector": user.pcvprofile.sector,
-            # "country": user.pcvprofile.country,
-        }
-
-    def serialize_blog_entries(self):
-        queryset = self.get_queryset()
-        entries = []
-        for entry in queryset:
-            json_entry = {
-                "title": entry.title,
-                "text": entry.body,
-                "slug": entry.slug,
-                "date": entry.post_time,
-                "user": self.serialize_pcv(entry.author),
-            }
-            entries.append(json_entry)
+        if "country" in filters:
+            entries = entries.filter(
+                author__pcvprofile__country=filters["country"]
+            )
+        if "sector" in filters:
+            entries = entries.filter(
+                author__pcvprofile__sector=filters["sector"]
+            )
+        if "gradelevel" in filters:
+            entries = entries.filter(
+                grade_level=filters["gradelevel"]
+            )
+        if "homestate" in filters:
+            entries = entries.filter(
+                author__pcvprofile__home_state=filters["homestate"]
+            )
         return entries
 
     def dispatch(self, request, *args, **kwargs):
