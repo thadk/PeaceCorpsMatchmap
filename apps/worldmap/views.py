@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, ListView, View
 from braces.views import JSONResponseMixin, AjaxResponseMixin
 
 from apps.pcvblog.models import Entry
-import data_options, sample_json
+import data_options
 
 class MapView(TemplateView):
 
@@ -25,17 +25,6 @@ class MapView(TemplateView):
         context["data"] = self.get_map_data()
         return context
 
-
-class BlogJSON(JSONResponseMixin, View):
-    """
-    filter options:
-    """
-
-    def get(self, request, *args, **kwargs):
-        context = {
-            'posts': sample_json.posts
-        }
-        return self.render_json_response(context)
 
 class BlogJSON(JSONResponseMixin, AjaxResponseMixin, ListView):
     """
