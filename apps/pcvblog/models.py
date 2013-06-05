@@ -2,6 +2,8 @@ from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.db import models
 
+from taggit.managers import TaggableManager
+
 class Entry(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=50)
@@ -9,6 +11,8 @@ class Entry(models.Model):
     slug = models.SlugField(db_index=True, blank=True)
     body = models.TextField()
     post_time = models.DateTimeField(auto_now_add=True)
+
+    tags = TaggableManager()
 
     @property
     def abstract(self):

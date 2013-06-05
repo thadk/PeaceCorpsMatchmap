@@ -1,4 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'pcvblog/base.html' %}
+
+{% block extrajs %}
+{{ block.super }}
+<script>
+  $(document).ready(function (){$('#id_tags').select2();});
+</script>
+{% endblock %}
+
 {% block content %}
 
 {% if not form.instance.pk %}
