@@ -28,6 +28,14 @@ Install requirements:
 
 Customize ``settings/localenv.py.sample`` and copy it to ``settings/localenv.py``
 
+Migrate the database:
+
+    python manage.py migrate
+
+Load in sample blog posts:
+
+    python manage.py loaddata fixtures.json
+
 To run the app in production you will need to set an environment variable to 
 point django to the production settings module:
 
