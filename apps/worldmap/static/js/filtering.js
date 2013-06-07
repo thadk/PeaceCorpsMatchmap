@@ -9,19 +9,22 @@ $(function() {
   $("form").change(function() {
     var str = $('form').serialize();
     str = str.replace(/[^&]+=\.?(?:&|$)/g, '')
-    //str = "gradelevel=4";
-    alert(str); // Just for debugging purposes right now.
-
+    
     // Add posts into sidebar
     $.getJSON('map/get_blogs/?' + str, function(data) {
       $('#sidebar').empty();
-      // TODO: Handle empty set.
+      // TODO: Handle empty return object.
       $.each(data["posts"], function(key, val){
           $('#sidebar').append("<h2>" + val["title"] + "</h2>");
           $('#sidebar').append(val["text"]).addClass("sidebar-post");
       });
     });
 
+  });
+
+  $("#clear_button").on("click", function(){
+    $('#sidebar').empty().append("Search for Peace Corps Volunteers.");
+    $('form')[0].reset();
   });
 
 
