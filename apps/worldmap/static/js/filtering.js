@@ -7,18 +7,24 @@
 $(function() {
 
   $("form").change(function() {
-    var str = $("form").serialize();
-    alert(str); // Just for debugging purposes right now.
-
+    var str = $('form').serialize();
+    str = str.replace(/[^&]+=\.?(?:&|$)/g, '')
+    
     // Add posts into sidebar
-    $.getJSON('map/get_blogs', function(data) {   // add { query: str } once working
+    $.getJSON('map/get_blogs/?' + str, function(data) {
       $('#sidebar').empty();
+      // TODO: Handle empty return object.
       $.each(data["posts"], function(key, val){
           $('#sidebar').append("<h2>" + val["title"] + "</h2>");
           $('#sidebar').append(val["text"]).addClass("sidebar-post");
       });
     });
 
+  });
+
+  $("#clear_button").on("click", function(){
+    $('#sidebar').empty().append("Search for Peace Corps Volunteers.");
+    $('form')[0].reset();
   });
 
 
