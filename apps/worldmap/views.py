@@ -28,6 +28,8 @@ class MapView(TemplateView):
 
 class BlogJSON(Ajaxify, ListView):
     """
+    This should also pass country locations and counts.
+
     pagination is available, but not tested yet
     filter format:
     /map/get_blogs?country=Uganda&sector=Environment
@@ -60,7 +62,9 @@ class BlogJSON(Ajaxify, ListView):
         return entries
 
     def dispatch(self, request, *args, **kwargs):
+        # get pagination from the default get() method
         json_dict = {
             "posts": self.serialize_blog_entries(),
+            # add country= {"name":"UG", "lat":32424, "long":08545}
         }
         return self.render_json_response(json_dict)
