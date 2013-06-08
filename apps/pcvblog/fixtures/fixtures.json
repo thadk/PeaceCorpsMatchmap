@@ -4,20 +4,42 @@
     "pk": 1,
     "fields":
     {
-      "username": "volone",
+      "username": "thadk",
       "email": "thad@pcvblog.org",
-      "password": "thepass"
+      "password": "thad"
+    }
+  },
+
+  { 
+    "model": "auth.User",
+    "pk": 2,
+    "fields":
+    {
+      "username": "qkslvrwolf",
+      "email": "seth@pcvblog.org",
+      "password": "seth"
     }
   },
 
   {
     "model": "auth.User",
-    "pk": 2,
+    "pk": 3,
     "fields":
     {
-      "username": "voltwo",
-      "email": "seth@pcvblog.org",
-      "password": "asecurepassword"
+      "username": "esoergel",
+      "email": "ethan@pcvblog.org",
+      "password": "ethan"
+    }
+  },
+
+  {
+    "model": "auth.User",
+    "pk": 4,
+    "fields":
+    {
+      "username": "beechnut",
+      "email": "mjc@pcvblog.org",
+      "password": "matt"
     }
   },
 
@@ -42,6 +64,30 @@
       "country": "NI",
       "sector": "edu",
       "home_state": "OH"
+    }
+  },
+
+  {
+    "model": "pcvcore.pcvprofile",
+    "pk": 3,
+    "fields":
+    {
+      "user": 3,
+      "country": "AL",
+      "sector": "ced",
+      "home_state": "NY"
+    }
+  },
+  
+  {
+    "model": "pcvcore.pcvprofile",
+    "pk": 4,
+    "fields":
+    {
+      "user": 4,
+      "country": "AM",
+      "sector": "health",
+      "home_state": "NJ"
     }
   },
 
