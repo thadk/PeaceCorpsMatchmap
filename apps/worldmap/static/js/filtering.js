@@ -7,24 +7,35 @@
 $(function() {
 
   $("form").change(function() {
-    var str = $("form").serialize();
-    alert(str);
+    var str = $('form').serialize();
+    str = str.replace(/[^&]+=\.?(?:&|$)/g, '')
+    
+    // Add posts into sidebar
+    $.getJSON('map/get_blogs/?' + str, function(data) {
+      $('#sidebar').empty();
+      // TODO: Handle empty return object.
+      $.each(data["posts"], function(key, val){
+          $('#sidebar').append("<h2>" + val["title"] + "</h2>");
+          $('#sidebar').append(val["text"]).addClass("sidebar-post");
+      });
+    });
+
   });
 
-  var countries = ["Albania", "Armenia", "Azerbaijan", "Belize", "Benin", 
-                  "Botswana", "Bulgaria", "Burkina Faso", "Cambodia", "Cameroon", 
-                  "Cape Verde", "China", "Colombia", "Costa Rica", "Dominican Republic", 
-                  "Eastern Caribbean", "El Salvador", "Ecuador", "Ethopia", "Fiji", 
-                  "Georgia", "Ghana", "Guatemala", "Guinea", "Guyana", "Honduras", 
-                  "Indonesia", "Jamaica", "Jordan", "Kazakhstan", "Kenya", 
-                  "Kyrgyz Republic", "Lesoto", "Liberia", "Macedonia", "Madagascar", 
-                  "Malawi", "Mali", "Mexico", "Micronesia and Polynesia", "Moldova", 
-                  "Mongolia", "Morocco", "Mozambique", "Namibia", "Nepal", "Nicaragua", 
-                  "Niger", "Panama", "Paraguay", "Peru", "Philipines", "Romania", 
-                  "Rwanda", "Samoa", "Senegal", "Sierra Leone", "South Africa", 
-                  "Suriname", "Swaziland", "Tanzania", "The Gambia", "Thailand", 
-                  "Togo", "Tnoga", "Uganda", "Ukraine", "Vanatu", "Zambia"];
+  $("#clear_button").on("click", function(){
+    $('#sidebar').empty().append("Search for Peace Corps Volunteers.");
+    $('form')[0].reset();
+  });
 
-  $('#searchbox').typeahead({source: countries});
+
+  // Get country names for typeahead searchbox
+
+  $.getJSON('map/get_data_options', function(data) {
+    var countries = []
+    $.each(data["data"]["countries"], function(key, val){
+        countries.push(val[1]);
+    });
+    $('#searchbox').typeahead({source: countries});
+  });
 
 });
