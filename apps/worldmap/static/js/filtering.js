@@ -6,6 +6,7 @@
 
 $(function() {  // On document ready
 
+
   // Date helper to format returned date
 
   $.date = function (dateObject) {
@@ -18,6 +19,7 @@ $(function() {  // On document ready
     return date;
   }
 
+
   // Truncate the post body text
 
   $.postpreview = function(post) {
@@ -26,6 +28,7 @@ $(function() {  // On document ready
     preview = preview + "<a onclick=''>Read more</a>";
     return preview;
   }
+
 
   // Form partial
 
@@ -40,8 +43,8 @@ $(function() {  // On document ready
     return partial;
   }
 
-  // Update results based on form parameters
 
+  // Updates results based on form parameters
   $.updatePosts = function(){
     var str = $('form').serialize();
     str = str.replace(/[^&]+=\.?(?:&|$)/g, '') // Strip out blank params
@@ -49,15 +52,22 @@ $(function() {  // On document ready
     // Add posts into sidebar
     $.getJSON('map/get_blogs/?' + str, function(data) {
       $('#sidebar').empty();
-      // TODO: Handle empty return object.
-      // TODO: Handle country object.
+      if (data["posts"].length == 0){
+        $('#sidebar').append("<br/><br/>No blog entries matched your search. Clear the search and try again.");
+      }
+      // TODO: Handle country or profile header object.
+      if (data["header"]) {
+        alert("Got header!:" + data["header"]);
+      }
+      // Display in sidebar a partial for each post
       $.each(data["posts"], function(key, post){
           $('#sidebar').append($.postpartial(post));
       });
     });
   }
 
-  // 
+
+  // Update posts when a field is changed or search box is submitted
 
   $("form").change(function() {
     $.updatePosts();
@@ -83,5 +93,6 @@ $(function() {  // On document ready
     });
     $('#searchbox').typeahead({source: countries});
   });
+
 
 });

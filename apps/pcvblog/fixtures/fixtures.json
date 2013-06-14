@@ -101,7 +101,7 @@
       "title": "Arrived Today!",
       "slug": "arrived-today",
       "body": "Hey everyone! I arrived today after a 35-hour journey: 18 by plane, 12 by car, and 5 by raft. I'm exhausted but I wanted to let everyone know that I'm here, safe, and the people I've met since arriving are great. Also I'm a little shocked the wifi is so good in such a remote area.",
-      "grade_level": 4
+      "grade_level": 1
     }
   },
   {
@@ -114,7 +114,7 @@
       "title": "CONSTRUCTION CONTINUES!",
       "slug": "construction-continues",
       "body": "Here we are cutting and bending REBAR. You can see that the money that ya’ll donated is going to a good cause and soon we will have a library and real community center with electricity! So what is happening here? Well take a look at my hand… It might not look that bad but let me assure you that cutting hundreds of pieces of rebar by hand takes its toll. I have a college degree, I manage the finances and logistics, I have hardly any comparable construction experience, Dominicans don’t expect me to work because I am educated and moderately useless, but I still I find myself compelled to pretend that I can work in 95 degree tropical sun like Dominicans. I can’t. I do however push myself because it lends me a ton of respect among my neighbors. Thus, I have been hydrating ever since and peeing florescent orange. Seriously, I cut one piece, lift one block and I am drenched in sweat. This happens when I exercise too. It is great if you are trying to slim down, not so great if you don’t like dehydration headaches. In the last picture you will see my 90 year old neighbor Juan Andrea (abuelo) supervising. I literally can do no wrong in his eyes. Closing note: it just started raining for the first time in almost 90 days. The water here comes out of the spigot every 8 – 16 days so water is always scarce. I am celebrating because this week I won’t have to decide between doing my laundry and washing my nalga. from http://danielwendt.tumblr.com/",
-      "grade_level": 9
+      "grade_level": 2
     }
   },
   {
@@ -127,7 +127,7 @@
       "title": "Failure",
       "slug": "failure",
       "body": "Today my host dad and I carried PVC tubes for 1/2 a mile and made multiple trips. For 8 hours we burned empty cement bags, partially melted the tubes and inserted a stake so that they would fit together. We bought gasoline and carried a pump down into a ravine so that we would have water to mix 60 bags of cement for the community center. I got blisters on my hands, sunburned, poked by thorns, cutunder the eye, dehydrated and exhausted. Then the incline was too steep to send the water up. In a moment of complete failure and homesickness I told my host dad that in my country I would just turn on the spigot. He looked at me smiled and said, Danny that’s just how shit is here. I laughed and then several 5-8 year old boys helped me carry some of the little tubes back. Although I was dead on my feet I carried 3 of them up hill joking about how much they weighed saying that I was going to make a fortune selling them by the pound like cows. They ran off into the meadow and were happy to have helped their Americano. Sometimes a failure leads to a good ending. Update: My host brother is a mechanic so we downloaded the manual, unscrewed a lock to release the throttle a bit and managed to send about 1,000 gallons up an even steeper incline. Win. from http://danielwendt.tumblr.com/",
-      "grade_level": 12
+      "grade_level": 3
     }
   },
   {
@@ -140,7 +140,59 @@
       "title": "Rain etc",
       "slug": "rain-etc",
       "body": "I woke up to rain at 5 am and worried that we were not going to be able to pour the footer of the community center today. Holy Thursday was the perfect day because not many of my neighbors had to work. The rain was serendipitous because it stopped at 7 am, I collected a tank of water for washing clothes, we got to work under some nice cloud cover and the sand needed less water. I hardly make it to 2 pm working in the heat so the overcast was much appreciated. 5 of my neighbor ladies got together from the community and made la bandera dominicana (The Dominican Flag) which consists of rice, beans and meat for twenty workers. They also kept the coffee flowing which was nice. Monday we are going to start with the first rows of cinder blocks. Finally we are making some progress. To all of the people who donated to this project  via the Peace Corps website (www.peacecorps.gov), THANK YOU for helping make our community center a reality! from http://danielwendt.tumblr.com/",
-      "grade_level": 2
+      "grade_level": 4
+    }
+  },
+  {
+    "model": "pcvblog.entry",
+    "pk": 5,
+    "fields":
+    {
+      "author": 3,
+      "post_time": "2013-04-25T14:19:04.521Z",
+      "title": "Arrived Today!",
+      "slug": "arrived-today",
+      "body": "Hey everyone! I arrived today after a 35-hour journey: 18 by plane, 12 by car, and 5 by raft. I'm exhausted but I wanted to let everyone know that I'm here, safe, and the people I've met since arriving are great. Also I'm a little shocked the wifi is so good in such a remote area.",
+      "grade_level": 5
+    }
+  },
+  {
+    "model": "pcvblog.entry",
+    "pk": 6,
+    "fields":
+    {
+      "author": 3,
+      "post_time": "2013-05-12T14:19:04.521Z",
+      "title": "CONSTRUCTION CONTINUES!",
+      "slug": "construction-continues",
+      "body": "Here we are cutting and bending REBAR. You can see that the money that ya’ll donated is going to a good cause and soon we will have a library and real community center with electricity! So what is happening here? Well take a look at my hand… It might not look that bad but let me assure you that cutting hundreds of pieces of rebar by hand takes its toll. I have a college degree, I manage the finances and logistics, I have hardly any comparable construction experience, Dominicans don’t expect me to work because I am educated and moderately useless, but I still I find myself compelled to pretend that I can work in 95 degree tropical sun like Dominicans. I can’t. I do however push myself because it lends me a ton of respect among my neighbors. Thus, I have been hydrating ever since and peeing florescent orange. Seriously, I cut one piece, lift one block and I am drenched in sweat. This happens when I exercise too. It is great if you are trying to slim down, not so great if you don’t like dehydration headaches. In the last picture you will see my 90 year old neighbor Juan Andrea (abuelo) supervising. I literally can do no wrong in his eyes. Closing note: it just started raining for the first time in almost 90 days. The water here comes out of the spigot every 8 – 16 days so water is always scarce. I am celebrating because this week I won’t have to decide between doing my laundry and washing my nalga. from http://danielwendt.tumblr.com/",
+      "grade_level": 6
+    }
+  },
+  {
+    "model": "pcvblog.entry",
+    "pk": 7,
+    "fields":
+    {
+      "author": 4,
+      "post_time": "2013-05-18T14:19:04.521Z",
+      "title": "Failure",
+      "slug": "failure",
+      "body": "Today my host dad and I carried PVC tubes for 1/2 a mile and made multiple trips. For 8 hours we burned empty cement bags, partially melted the tubes and inserted a stake so that they would fit together. We bought gasoline and carried a pump down into a ravine so that we would have water to mix 60 bags of cement for the community center. I got blisters on my hands, sunburned, poked by thorns, cutunder the eye, dehydrated and exhausted. Then the incline was too steep to send the water up. In a moment of complete failure and homesickness I told my host dad that in my country I would just turn on the spigot. He looked at me smiled and said, Danny that’s just how shit is here. I laughed and then several 5-8 year old boys helped me carry some of the little tubes back. Although I was dead on my feet I carried 3 of them up hill joking about how much they weighed saying that I was going to make a fortune selling them by the pound like cows. They ran off into the meadow and were happy to have helped their Americano. Sometimes a failure leads to a good ending. Update: My host brother is a mechanic so we downloaded the manual, unscrewed a lock to release the throttle a bit and managed to send about 1,000 gallons up an even steeper incline. Win. from http://danielwendt.tumblr.com/",
+      "grade_level": 7
+    }
+  },
+  {
+    "model": "pcvblog.entry",
+    "pk": 8,
+    "fields":
+    {
+      "author": 4,
+      "post_time": "2013-04-25T14:19:04.521Z",
+      "title": "Rain etc",
+      "slug": "rain-etc",
+      "body": "I woke up to rain at 5 am and worried that we were not going to be able to pour the footer of the community center today. Holy Thursday was the perfect day because not many of my neighbors had to work. The rain was serendipitous because it stopped at 7 am, I collected a tank of water for washing clothes, we got to work under some nice cloud cover and the sand needed less water. I hardly make it to 2 pm working in the heat so the overcast was much appreciated. 5 of my neighbor ladies got together from the community and made la bandera dominicana (The Dominican Flag) which consists of rice, beans and meat for twenty workers. They also kept the coffee flowing which was nice. Monday we are going to start with the first rows of cinder blocks. Finally we are making some progress. To all of the people who donated to this project  via the Peace Corps website (www.peacecorps.gov), THANK YOU for helping make our community center a reality! from http://danielwendt.tumblr.com/",
+      "grade_level": 8
     }
   }
 ]
