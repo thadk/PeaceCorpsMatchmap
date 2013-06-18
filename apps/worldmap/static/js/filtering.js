@@ -45,6 +45,7 @@ $(function() {  // On document ready
 
 
   // Updates results based on form parameters
+
   $.updatePosts = function(){
     var str = $('form').serialize();
     str = str.replace(/[^&]+=\.?(?:&|$)/g, '') // Strip out blank params
@@ -66,6 +67,10 @@ $(function() {  // On document ready
     });
   }
 
+  // Update posts on page load
+
+  $.updatePosts();
+
 
   // Update posts when a field is changed or search box is submitted
 
@@ -78,9 +83,15 @@ $(function() {  // On document ready
     $.updatePosts();
   });
 
+  // Clear posts when "Clear Search" button is clicked.
+
   $("#clear_button").on("click", function(){
     $('#sidebar').empty().append("<br/><br/>Search for Peace Corps Volunteers.");
     $('form')[0].reset();
+  });
+
+  $("#toggle_active").on("click", function(){
+    $('#sidebar').toggleClass("active");
   });
 
 
