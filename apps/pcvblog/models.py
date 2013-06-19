@@ -9,7 +9,6 @@ from apps.pcvcore.models import PCVProfile
 
 class Entry(models.Model):
     author = models.ForeignKey('auth.User')
-    author_profile = models.ForeignKey(PCVProfile, blank=True, null=True)
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to="blog-images", null=True, blank=True)
     slug = models.SlugField(db_index=True, blank=True)
@@ -36,7 +35,7 @@ class Entry(models.Model):
 
     def as_dict(self):
         return {
-            'author': self.author_profile,
+            'author': self.author.pcvprofile,
             'title': self.title,
             # 'image': self.image, # <ImageFieldFile: None> is not JSON serializable
             'slug': self.slug,
