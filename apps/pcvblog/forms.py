@@ -36,4 +36,4 @@ class EntryForm(UserKwargModelFormMixin, forms.ModelForm):
 
     class Meta:
         model = Entry
-        fields = ('title', 'body', 'image')
+        fields = ('title', 'body', 'image', 'grade_level')
