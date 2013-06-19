@@ -38,6 +38,23 @@ body{
   z-index:-100;
 }
 
+.post-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.post-byline {
+  font-size: 12px;
+}
+
+.post-body {
+  font-size: 14px;
+}
+
+.sidebar-post {
+  margin: 10px;
+}
+
 .sidebar {
   background-color: #E2DFCD;
   position: absolute;
