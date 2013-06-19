@@ -147,7 +147,7 @@ class HumanizedDateEncoder(json.JSONEncoder):
 
 
 def json_encode(obj):
-    """Serializes the object as json using simplejson.dumps, with the 
+    """Serializes the object as json using simplejson.dumps, with the
     ``ExtendedJSONEncoder`` as the encoder class.  A different
     encoder can be specified with the kwarg."""
     return ExtendedJSONEncoder().encode(obj)

@@ -5,16 +5,17 @@ from django.db import models
 from taggit.managers import TaggableManager
 
 from apps.worldmap import data_options
+from apps.pcvcore.models import PCVProfile
 
 class Entry(models.Model):
     author = models.ForeignKey('auth.User')
+    author_profile = models.ForeignKey(PCVProfile, blank=True, null=True)
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to="blog-images", null=True, blank=True)
     slug = models.SlugField(db_index=True, blank=True)
     body = models.TextField()
     post_time = models.DateTimeField(auto_now_add=True)
     grade_level = models.CharField(choices=data_options.GRADES, max_length=128, blank=True, null=True, default="")
-
     tags = TaggableManager()
 
     @property
@@ -32,3 +33,15 @@ class Entry(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.title, self.author)
+
+    def as_dict(self):
+        return {
+            'author': self.author_profile,
+            'title': self.title,
+            # 'image': self.image, # <ImageFieldFile: None> is not JSON serializable
+            'slug': self.slug,
+            'body': self.body,
+            'post_time': self.post_time,
+            'grade_level': self.grade_level,
+            'tags': self.tags.all(),
+        }
