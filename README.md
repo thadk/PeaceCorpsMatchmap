@@ -41,4 +41,31 @@ point django to the production settings module:
 
     export DJANGO_SETTINGS_MODULE=peacecorps.settings.production
 
+To get started on Mac OS X:
+===========================
+```sh
+virtualenv --no-site-packages your-environment-name # create a virtual environment
+source environment/bin/activate # activate your virtual environment
+pip install django-taggit # install taggit manually, because problems
+pip install -r requirements.txt # install all dependencies
+python manage.py syncdb # sync database
+python manage.py migrate # migrate the database
+python manage.py loaddata fixtures # load sample blog posts into database
+python manage.py loaddata tags # load tags into database
+python manage.py runserver # run the server
+```
+
+Then navigate to localhost:8000.
+
+If you get a braces error, run:
+
+```sh
+curl -O http://python-distribute.org/distribute_setup.py
+python distribute_setup.py
+pip install django-braces
+```
+
+Then re-run the server
+
+
 Happy Peacecorping!
