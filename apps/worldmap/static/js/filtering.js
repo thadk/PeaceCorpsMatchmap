@@ -57,8 +57,13 @@ $(function() {  // On document ready
         $('#sidebar').append("<br/><br/>No blog entries matched your search. Clear the search and try again.");
       }
       // TODO: Handle country or profile header object.
-      if (data["header"]) {
-        alert("Got header!:" + data["header"]);
+      if (data["country"]) {
+        alert("Got header!:" + data["country"]);
+        var country = data["country"];
+        var zoomlevel = country["zoomlevel"];
+        var lng = country["coords"]["lng"];
+        var lat = country["coords"]["lat"];
+        map.zoom(zoomlevel).center({ lon: lng, lat: lat });
       }
       // Display in sidebar a partial for each post
       $.each(data["posts"], function(key, post){
@@ -100,7 +105,7 @@ $(function() {  // On document ready
   $.getJSON('map/get_data_options', function(data) {
     var countries = []
     $.each(data["data"]["countries"], function(key, val){
-        countries.push(val[1]);
+        countries.push(val[name]);
     });
     $('#searchbox').typeahead({source: countries});
   });
