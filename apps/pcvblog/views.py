@@ -5,8 +5,9 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 
 from braces.views import LoginRequiredMixin, UserFormKwargsMixin
+from taggit.models import Tag
 
-
+from utils.views import JSONListView
 from apps.pcvblog.models import Entry
 from apps.pcvblog.forms import EntryForm
 
@@ -57,3 +58,10 @@ class EntryList(ListView, UserFormKwargsMixin):
             return Entry.objects.all()
         else:
             return Entry.objects.filter(author__pk=self.request.user.pk)
+
+
+class TagJSON(JSONListView):
+    model = Tag
+
+    def get_queryset(self):
+        return Entry.tags.all()
