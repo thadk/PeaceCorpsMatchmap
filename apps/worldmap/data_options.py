@@ -70,6 +70,8 @@ COUNTRIES = {
     "ZM": {"name": "Zambia", "coords": (0.00, 1.11), "zoomlevel": 5}
 }
 
+COUNTRY_CHOICES = [(v["name"], k) for k,v in COUNTRIES.items()]
+
 STATES = (
     (u"AL", u"Alabama"),
     (u"AK", u"Alaska"),

@@ -4,7 +4,7 @@ from apps.worldmap import data_options
 class PCVProfile(models.Model):
     is_pcv = models.BooleanField(default=True)
     user = models.OneToOneField('auth.User')
-    country = models.CharField("Post Country", choices=data_options.COUNTRIES, max_length=128, blank=True)
+    country = models.CharField("Post Country", choices=data_options.COUNTRY_CHOICES, max_length=128, blank=True)
     sector = models.CharField(choices=data_options.SECTORS, max_length=128, blank=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
