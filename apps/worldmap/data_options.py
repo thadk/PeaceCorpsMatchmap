@@ -1,5 +1,5 @@
 COUNTRIES = [
-    {'code': 'AL', 'coords': (0.0, 1.11), 'name': 'Albania', 'zoomlevel': 5},
+    {'code': 'AL', 'coords': (42.0, 72.11), 'name': 'Albania', 'zoomlevel': 5},
     {'code': 'AM', 'coords': (0.0, 1.11), 'name': 'Armenia', 'zoomlevel': 5},
     {'code': 'AZ', 'coords': (0.0, 1.11), 'name': 'Azerbaijan', 'zoomlevel': 5},
     {'code': 'BZ', 'coords': (0.0, 1.11), 'name': 'Belize', 'zoomlevel': 5},
