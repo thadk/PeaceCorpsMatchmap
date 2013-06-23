@@ -11,8 +11,19 @@ class PCVProfile(models.Model):
     home_address = models.CharField(max_length=128, blank=True, default="")
     home_state = models.CharField(choices=data_options.STATES, max_length=128, blank=True, default="")
     bio = models.TextField(blank=True)
+
     def __unicode__(self):
         return self.user.username
+
+    def as_dict(self):
+        return {
+            'username': self.user.username,
+            'name': "%s %s" % (self.user.first_name, self.user.last_name),
+            'country': self.country,
+            'home_state': self.home_state,
+            'id': self.id,
+            'sector': self.sector,
+        }
 
 class School(models.Model):
     city = models.CharField(max_length=128, blank=True)
