@@ -3,6 +3,9 @@ from django.views.generic import TemplateView, ListView, View
 from apps.pcvblog.models import Entry
 from .map_utils import Ajaxify, get_map_data
 
+import utils
+print utils.__dict__.keys()
+
 from utils.views import JSONListView
 
 class MapView(TemplateView):
