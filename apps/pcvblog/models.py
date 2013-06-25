@@ -37,7 +37,7 @@ class Entry(models.Model):
         return {
             'author': self.author.pcvprofile,
             'title': self.title,
-            # 'image': self.image, # <ImageFieldFile: None> is not JSON serializable
+            'image': self.image.url if self.image else None,
             'slug': self.slug,
             'body': self.body,
             'post_time': self.post_time,
