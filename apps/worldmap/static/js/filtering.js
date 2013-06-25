@@ -2,7 +2,7 @@
 // by [beechnut](http://github.com/beechnut)
 //
 //
-// 
+//
 
 $(function() {  // On document ready
 
@@ -49,13 +49,13 @@ $(function() {  // On document ready
   $.updatePosts = function(){
     var str = $('form').serialize();
     str = str.replace(/[^&]+=\.?(?:&|$)/g, '') // Strip out blank params
-    
+
     // Add posts into sidebar
     $.getJSON('map/get_blogs/?' + str, function(data) {
       $('#sidebar').empty();
       if (data["posts"].length == 0){
         $('#sidebar').append("<br/><br/>No blog entries matched your search. Clear the search and try again.");
-      }
+      }b
       // TODO: Handle country or profile header object.
       if (data["header"]) {
         alert("Got header!:" + data["header"]);
@@ -65,12 +65,19 @@ $(function() {  // On document ready
           $('#sidebar').append($.postpartial(post));
       });
     });
+
+    $.initializeMap = function(){
+      // mapbox.auto('map', 'matchmap.map-7egeornz');
+      var map = mapbox.map('map');
+      map.addLayer(mapbox.layer().id('matchmap.map-7egeornz'));
+      map.zoom(6).center({lon: 42, lat: -71});
+    }
   }
 
   // Update posts on page load
 
+  $.initializeMap();
   $.updatePosts();
-
 
   // Update posts when a field is changed or search box is submitted
 

@@ -9,7 +9,7 @@
 
   <div id="search-volunteers" class="search-section">
 
-    <button class="btn btn-large btn-primary" type="button">Hide Volunteers</button> 
+    <button class="btn btn-large btn-primary" type="button">Hide Volunteers</button>
 
     <select name="sector" data-placeholder="Sector" tabindex="2">
       <option value="" selected="selected">Sector:</option>
@@ -23,8 +23,8 @@
     <select name="country" data-placeholder="Country" tabindex="2">
       <option value="" selected="selected">Country of Service:</option>
       {% for country in data.countries %}
-        <option value="{{country.1}}">
-          {{country.0}}
+        <option value="{{country.code}}">
+          {{country.name}}
         </option>
       {% endfor %}
     </select>
