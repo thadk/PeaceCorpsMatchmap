@@ -44,6 +44,21 @@ $(function() {  // On document ready
   }
 
 
+  // Get country names for typeahead searchbox & geo lookup
+
+  var dict = []
+  $.getJSON('map/get_data_options', function(data) {
+    var countries = []
+
+    $.each(data["data"]["countries"], function(key, val){
+      var object = {"code": val["code"], "coords": val["coords"], "zoomlevel": val["zoomlevel"]};
+      dict.push(object);
+      countries.push(val["name"]);
+    });
+    $('#searchbox').typeahead({source: countries});
+  });
+
+
   // Updates results based on form parameters
 
   $.updatePosts = function(){
@@ -56,28 +71,31 @@ $(function() {  // On document ready
       if (data["objects"].length == 0){
         $('#sidebar').append("<br/><br/>No blog entries matched your search. Clear the search and try again.");
       }
-      // TODO: Handle country or profile header object.
-      // if (data["country"]) {
-      //   alert("Got header!:" + data["country"]);
-      //   var country = data["country"];
-      //   var zoomlevel = country["zoomlevel"];
-      //   var lng = country["coords"]["lng"];
-      //   var lat = country["coords"]["lat"];
-      //   map.zoom(zoomlevel).center({ lon: lng, lat: lat });
-      // }
+
       // Display in sidebar a partial for each post
       $.each(data["objects"], function(index,post){
         $('#sidebar').append($.postpartial(post));
       });
+      var country = data["objects"][data["objects"].length-1].author.country;
+      $.updateMap();
     });
 
   }
 
-  $.updateMap = function(coords){
-    lng = coords[0]
-    lat = coords[1]
+  $.updateMap = function(){
+    var datagood = $.grep(dict, function(n) {
+      return n.code == $('select#country option:selected').val();
+    });
+    var country = datagood[0];
+    var coords = country.coords;
+    var lng = coords[0];
+    var lat = coords[1];
+    var zoomlevel = country.zoomlevel - 2;
+
     map.center({ lon: lng, lat: lat });
+    map.zoom(zoomlevel);
   }
+
 
   // Update posts on page load
 
@@ -88,7 +106,7 @@ $(function() {  // On document ready
 
   $("form").change(function() {
     $.updatePosts();
-    $.updateMap([20, 20]);
+    $.updateMap();
   });
 
   $("form").submit(function(event) {
@@ -108,15 +126,6 @@ $(function() {  // On document ready
   });
 
 
-  // Get country names for typeahead searchbox
-
-  $.getJSON('map/get_data_options', function(data) {
-    var countries = []
-    $.each(data["data"]["countries"], function(key, val){
-        countries.push(val[name]);
-    });
-    $('#searchbox').typeahead({source: countries});
-  });
 
 
 });

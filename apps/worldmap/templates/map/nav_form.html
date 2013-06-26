@@ -21,7 +21,7 @@
       {% endfor %}
     </select>
 
-    <select name="country" data-placeholder="Country" tabindex="2">
+    <select name="country" data-placeholder="Country" tabindex="2" id="country">
       <option value="" selected="selected">Country of Service:</option>
       {% for country in data.countries %}
         <option value="{{country.code}}">
