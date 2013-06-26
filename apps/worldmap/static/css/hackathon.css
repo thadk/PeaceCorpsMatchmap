@@ -59,13 +59,14 @@ body{
 }
 
 .sidebar {
+  /*Do not set height on this
+  one otherwise scrolling will be weird*/
   background-color: #E2DFCD;
   position: absolute;
   padding: 150px 10px 0;
   width: 25%;
   z-index: 100;
   right: 0;
-  height: 100%;
   left: auto;
   box-shadow: -5px 5px 12px #777;
 }
