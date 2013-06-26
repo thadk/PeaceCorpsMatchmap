@@ -55,7 +55,7 @@ $(function() {  // On document ready
       $('#sidebar').empty();
       if (data["objects"].length == 0){
         $('#sidebar').append("<br/><br/>No blog entries matched your search. Clear the search and try again.");
-      }b
+      }
       // TODO: Handle country or profile header object.
       // if (data["country"]) {
       //   alert("Got header!:" + data["country"]);
@@ -71,12 +71,6 @@ $(function() {  // On document ready
       });
     });
 
-    $.initializeMap = function(){
-      // mapbox.auto('map', 'matchmap.map-7egeornz');
-      var map = mapbox.map('map');
-      map.addLayer(mapbox.layer().id('matchmap.map-7egeornz'));
-      map.zoom(6).center({lon: 42, lat: -71});
-    }
   }
 
   $.updateMap = function(coords){
@@ -86,8 +80,9 @@ $(function() {  // On document ready
   }
 
   // Update posts on page load
-  $.initializeMap();
+
   $.updatePosts();
+
 
   // Update posts when a field is changed or search box is submitted
 
