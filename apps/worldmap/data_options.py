@@ -242,7 +242,8 @@ COUNTRIES = {
     #{ "code": "ZW", "name": "Zimbabwe", "PCVactive": null, "coords": (29.8514, -19.0042), "zoomlevel": 8 }
 }
 
-COUNTRY_CHOICES = [(d["name"], c) for c, d in COUNTRIES.items()]
+COUNTRY_CHOICES = sorted([(d["name"], c) for c, d in COUNTRIES.items()])
+
 
 STATES = (
     (u"AL", u"Alabama"),
