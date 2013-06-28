@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.urlresolvers import reverse
+
 from apps.worldmap import data_options
 
 class PCVProfile(models.Model):
@@ -11,6 +13,10 @@ class PCVProfile(models.Model):
     home_address = models.CharField(max_length=128, blank=True, default="")
     home_state = models.CharField(choices=data_options.STATES, max_length=128, blank=True, default="")
     bio = models.TextField(blank=True)
+
+    @property
+    def blog_url(self):
+        return reverse("blog_user_entries", args=[self.user.username])
 
     def __unicode__(self):
         return self.user.username

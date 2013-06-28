@@ -5,10 +5,8 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 
 from braces.views import LoginRequiredMixin, UserFormKwargsMixin
-from taggit.models import Tag
 
-from utils.views import JSONListView
-from apps.pcvblog.models import Entry
+from ..models import Entry
 from .forms import EntryForm
 
 class BlogLoginRequiredMixin(LoginRequiredMixin):
@@ -50,7 +48,7 @@ class EntryUpdate(ImageUploadMixin, BlogLoginRequiredMixin, UserFormKwargsMixin,
 class EntryList(ListView, UserFormKwargsMixin):
     model = Entry
     context_object_name = "entry_list"
-    template_name = "templates/entry_list.html"
+    template_name = "pcv_tools/entry_list.html"
     paginate_by = 10
 
     def get_queryset(self):
@@ -58,10 +56,3 @@ class EntryList(ListView, UserFormKwargsMixin):
             return Entry.objects.all()
         else:
             return Entry.objects.filter(author__pk=self.request.user.pk)
-
-
-class TagJSON(JSONListView):
-    model = Tag
-
-    def get_queryset(self):
-        return Entry.tags.all()

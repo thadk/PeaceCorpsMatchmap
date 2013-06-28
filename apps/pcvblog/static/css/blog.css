@@ -1,0 +1,9 @@
+/* This is being imported site-wide right now, so avoid name conflicts */
+
+pre.blog-body {
+    border: none;
+    background: inherit;
+    font: inherit;
+    word-wrap: normal;
+    word-break: normal;
+}

@@ -1,10 +1,11 @@
 from django.views.generic import ListView, DetailView
 
+from taggit.models import Tag
+
 from utils.views import JSONListView
 from apps.worldmap.map_utils import get_map_data, make_geojson
 
 from .models import Entry
-from .forms import EntryForm
 
 class BlogFilterMixin(object):
     """
@@ -43,8 +44,16 @@ class BlogJSON(BlogFilterMixin, JSONListView):
         context['countries'] = make_geojson([entry.author.pcvprofile.country for entry in self.object_list])
         return context
 
+
+class TagJSON(JSONListView):
+    model = Tag
+
+    def get_queryset(self):
+        return Entry.tags.all()
+
+
 class Entries(BlogFilterMixin, ListView):
-    template_name = "blog/entry_list.html"
+    # template_name = "blog/entry_list.html"
     paginate_by = 10
 
     def get_queryset(self, **kwargs):
@@ -55,6 +64,7 @@ class Entries(BlogFilterMixin, ListView):
         if self.pcv:
             entries = entries.filter(author__username=self.pcv)
         return entries
+
 
 class Permalink(DetailView):
     template_name = "blog/permalink.html"

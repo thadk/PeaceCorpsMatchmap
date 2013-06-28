@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, url
 
-from .views import BlogJSON, Entries, Permalink
+from .views import BlogJSON, Entries, Permalink, TagJSON
 
 urlpatterns = patterns('',
 
     # utility views
-    url(r'^entries.json/$', BlogJSON.as_view(), name='new_blog_json'),
+    url(r'^json/$', BlogJSON.as_view(), name='blog_json'),
     url(r'^tags/$', TagJSON.as_view(), name='tag_json'),
 
     # public views

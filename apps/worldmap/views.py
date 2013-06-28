@@ -5,7 +5,6 @@ from .map_utils import Ajaxify, get_map_data, make_geojson
 from data_options import COUNTRIES
 
 import utils
-print utils.__dict__.keys()
 
 from utils.views import JSONListView
 

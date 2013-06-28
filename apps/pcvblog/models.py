@@ -15,7 +15,11 @@ class Entry(models.Model):
     body = models.TextField()
     post_time = models.DateTimeField(auto_now_add=True)
     grade_level = models.CharField(choices=data_options.GRADES, max_length=128, blank=True, null=True, default="")
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
+
+    @property
+    def permalink(self):
+        return reverse("blog_permalink", args=[self.pk, self.slug])
 
     @property
     def abstract(self):
