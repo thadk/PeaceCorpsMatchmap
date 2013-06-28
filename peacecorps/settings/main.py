@@ -1,5 +1,11 @@
 import os
 
+# set environment variables:
+# SECRET_KEY
+# DJANGO_ENV ("DEV" or "PRODUCTION") - defaults to DEV
+# DJANGO_DEBUG (True or False) - defaults to True in DEV, False in PRODUCTION
+
+
 ADMINS = (
     ('u45127', 'thadknull@gmail.com'),
 )
@@ -68,7 +74,8 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '-tvq%*!rhbajbg)_nn1#ul55w-mhtzdhgisunqc%__ya$my%#l'
+SECRET_KEY = os.environ.get("SECRET_KEY", "this is supposed to be a secret...")
+
 
 TEMPLATE_CONTEXT_PROCESSORS = (
   'django.contrib.auth.context_processors.auth',
@@ -157,7 +164,22 @@ LOGGING = {
     }
 }
 
-DJANGO_ENV = os.environ.get("DJANGO_ENV")  # PRODUCTION, TEST, or DEV
+###############
+# Environment #
+###############
+
+
+DJANGO_ENV = os.environ.get('DJANGO_ENV', 'DEV')  # PRODUCTION, TEST, or DEV
+
+# You can set DEBUG in either setting, but it defaults to
+# True locally and False on the server
+if DJANGO_ENV == "PRODUCTION":
+    from .production import *
+else:
+    from .development import *
+
+
+TEMPLATE_DEBUG = DEBUG
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
