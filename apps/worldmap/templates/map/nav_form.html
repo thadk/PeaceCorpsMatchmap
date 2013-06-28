@@ -23,7 +23,7 @@
 
     <select name="country" data-placeholder="Country" tabindex="2" id="country">
       <option value="" selected="selected">Country of Service:</option>
-      {% for code, country in data.country_choices %}
+      {% for country, code in data.country_choices %}
         <option value="{{code}}">
           {{country}}
         </option>
