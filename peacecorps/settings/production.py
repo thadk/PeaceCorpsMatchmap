@@ -15,6 +15,32 @@ DATABASES = {
 ALLOWED_HOSTS = ['peacecorps.herokuapp.com']
 
 
+###################
+# S3 FILE STORAGE #
+###################
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME", "")
+
+AWS_HEADERS = {
+    "Cache-Control": "public, max-age=86400",
+}
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_SECURE_URLS = False
+AWS_REDUCED_REDUNDANCY = False
+AWS_IS_GZIPPED = False
+
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+MEDIA_URL = STATIC_URL + 'media/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
+
+
 #####################
 # SENDGRID SETTINGS #
 #####################
