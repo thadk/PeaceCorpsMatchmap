@@ -64,6 +64,13 @@ $(function() {  // On document ready
   $.updatePosts = function(){
     var str = $('form').serialize();
     str = str.replace(/[^&]+=\.?(?:&|$)/g, '') // Strip out blank params
+    function getURLParameter(name) {
+      return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(str)||[,null])[1]
+      );
+    }
+    console.log(getURLParameter('country'));
+    country = getURLParameter('country');
 
     // Add posts into sidebar
     $.getJSON('map/get_blogs/?' + str, function(data) {
@@ -76,15 +83,16 @@ $(function() {  // On document ready
       $.each(data["objects"], function(index,post){
         $('#sidebar').append($.postpartial(post));
       });
-      var country = data["objects"][data["objects"].length-1].author.country;
-      $.updateMap();
+
+      $.updateMap(country);
     });
 
   }
 
-  $.updateMap = function(){
+
+  $.updateMap = function(country){
     var datagood = $.grep(dict, function(n) {
-      return n.code == $('select#country option:selected').val();
+      return n.code == country;
     });
     var country = datagood[0];
     var coords = country.coords;
@@ -106,7 +114,6 @@ $(function() {  // On document ready
 
   $("form").change(function() {
     $.updatePosts();
-    $.updateMap();
   });
 
   $("form").submit(function(event) {
