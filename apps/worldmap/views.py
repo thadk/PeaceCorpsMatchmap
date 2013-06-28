@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, ListView, View
 
 from apps.pcvblog.models import Entry
-from .map_utils import Ajaxify, get_map_data
+from .map_utils import Ajaxify, get_map_data, make_geojson
 from data_options import COUNTRIES
 
 import utils
@@ -78,11 +78,7 @@ class BlogJSON(JSONListView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogJSON, self).get_context_data(**kwargs)
-        context['countries'] = {}
-        for entry in self.object_list:
-            code = entry.author.pcvprofile.country
-            country = COUNTRIES[code]
-            context['countries'][code] = country['coords']
+        context['countries'] = make_geojson([entry.author.pcvprofile.country for entry in self.object_list])
         return context
 
     def get_queryset(self):
