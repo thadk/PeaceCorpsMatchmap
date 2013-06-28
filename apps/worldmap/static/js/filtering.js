@@ -103,10 +103,10 @@ $(function() {  // On document ready
     if (country_data.features.length > 1) {
       console.log(country_data);
       map.center({ lon: 0.0, lat: 0.0 });
-      map.zoom(4);
+      map.zoom(2.5);
 
-      map.addLayer(mapbox.markerLayer().setGeoJSON(country_data));
-
+      var featureLayer = mapbox.markers.layer().features(country_data.features);
+      map.addLayer(featureLayer);
     }
 
   }
