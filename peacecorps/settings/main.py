@@ -5,7 +5,6 @@ import os
 # DJANGO_ENV ("DEV" or "PRODUCTION") - defaults to DEV
 # DJANGO_DEBUG (True or False) - defaults to True in DEV, False in PRODUCTION
 
-
 ADMINS = (
     ('u45127', 'thadknull@gmail.com'),
 )

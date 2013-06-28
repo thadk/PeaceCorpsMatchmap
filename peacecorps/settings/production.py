@@ -1,6 +1,9 @@
 import os
 import dj_database_url
 
+# DJANGO_ENV="PRODUCTION" DJANGO_DEBUG="False"
+
+
 DEBUG = os.environ.get('DJANGO_DEBUG', "False").lower() == "true"
 
 DEBUG_SQL = False
