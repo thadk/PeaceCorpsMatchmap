@@ -88,6 +88,11 @@ $(function() {  // On document ready
 
 
   $.updateMap = function(country_data){
+
+    if (map.getLayers().length > 1) {
+      map.removeLayerAt(1);
+    }
+
     if (country_data.features.length == 1) {
       var country = country_data.features[0];
       var coords = country.geometry.coordinates;
@@ -98,6 +103,7 @@ $(function() {  // On document ready
 
       map.center({ lon: lng, lat: lat });
       map.zoom(zoomlevel);
+
     }
     
     if (country_data.features.length > 1) {
@@ -107,6 +113,7 @@ $(function() {  // On document ready
 
       var featureLayer = mapbox.markers.layer().features(country_data.features);
       map.addLayer(featureLayer);
+      
     }
 
   }
