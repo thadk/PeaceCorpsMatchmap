@@ -64,14 +64,7 @@ $(function() {  // On document ready
   $.updatePosts = function(){
     var str = $('form').serialize();
     str = str.replace(/[^&]+=\.?(?:&|$)/g, '') // Strip out blank params
-    function getURLParameter(name) {
-      return decodeURI(
-        (RegExp(name + '=' + '(.+?)(&|$)').exec(str)||[,null])[1]
-      );
-    }
-    console.log(getURLParameter('country'));
-    country = getURLParameter('country');
-
+    
     // Add posts into sidebar
     $.getJSON('map/get_blogs/?' + str, function(data) {
       $('#sidebar').empty();
@@ -84,24 +77,45 @@ $(function() {  // On document ready
         $('#sidebar').append($.postpartial(post));
       });
 
-      $.updateMap(country);
+      if (data["countries"]){
+        var country_data = data["countries"];
+        console.log(country_data.features.length);
+        $.updateMap(country_data);
+      }
     });
 
   }
 
 
-  $.updateMap = function(country){
-    var datagood = $.grep(dict, function(n) {
-      return n.code == country;
-    });
-    var country = datagood[0];
-    var coords = country.coords;
-    var lng = coords[0];
-    var lat = coords[1];
-    var zoomlevel = country.zoomlevel - 2;
+  $.updateMap = function(country_data){
 
-    map.center({ lon: lng, lat: lat });
-    map.zoom(zoomlevel);
+    if (map.getLayers().length > 1) {
+      map.removeLayerAt(1);
+    }
+
+    if (country_data.features.length == 1) {
+      var country = country_data.features[0];
+      var coords = country.geometry.coordinates;
+      var lng = coords[0];
+      var lat = coords[1];
+      console.log(lng + ", " + lat);
+      var zoomlevel = 6;
+
+      map.center({ lon: lng, lat: lat });
+      map.zoom(zoomlevel);
+
+    }
+    
+    if (country_data.features.length > 1) {
+      console.log(country_data);
+      map.center({ lon: 0.0, lat: 0.0 });
+      map.zoom(2.5);
+
+      var featureLayer = mapbox.markers.layer().features(country_data.features);
+      map.addLayer(featureLayer);
+      
+    }
+
   }
 
 
