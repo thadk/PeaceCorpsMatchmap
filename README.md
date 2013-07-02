@@ -3,7 +3,7 @@ Peace Corps Coverdell World Wise Schools matcher
 
 This is a Django application to link teachers and Peace Corps volunteers through classroom-targetted country-georeferenced blog posting that get tagged and categorized by grade level, home state of volunteer and sector of volunteer.
 
-The early version of the app is live at [peacecorps.herokuapp.com](peacecorps.herokuapp.com)
+The early version of the app is live at [peacecorps.herokuapp.com](https://peacecorps.herokuapp.com)
 
 This app was first developed at the ID 2013 Harvard Developers for I. Development hackathon in Cambridge, 
 
