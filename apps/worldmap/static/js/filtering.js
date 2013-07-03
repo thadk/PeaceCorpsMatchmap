@@ -38,7 +38,7 @@ $(function() {  // On document ready
 
     var partial = "<br/><br/><div class='sidebar-post'>";
     partial = partial + "<span class='post-title'>" + title + "</span><br/>";
-    partial = partial + "<span class='post-byline'>by <a href='" + name + "'>" + name + "</a> on " + $.date(post["post_time"]) + "</span><br/>";
+    partial = partial + "<span class='post-byline'>by <a href='blog/" + name + "'>" + name + "</a> on " + $.date(post["post_time"]) + "</span><br/>";
     partial = partial + "<span class='post-body'>" + $.postpreview(post) + "</span>";
     return partial;
   }
