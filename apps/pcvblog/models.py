@@ -47,4 +47,5 @@ class Entry(models.Model):
             'post_time': self.post_time,
             'grade_level': self.grade_level,
             'tags': self.tags.all(),
+            'permalink': self.permalink,
         }
