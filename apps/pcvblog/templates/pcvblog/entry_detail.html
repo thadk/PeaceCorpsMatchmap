@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>{{ entry.title }}</h1>
+<hr />
+<small>Posted by
+  <a href="{{ entry.author.pcvprofile.blog_url }}">{{ entry.author }}</a>
+  on {{ entry.post_time | date:"F j, Y" }}
+</small>
+
+<p><pre class="blog-body">{{ entry.body }}</pre></p>
+
+<hr />
+
+{% endblock %}

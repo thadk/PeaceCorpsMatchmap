@@ -32,10 +32,13 @@ body{
   margin: 5px auto;
 }
 
-#map { 
+#map {
   position: absolute;
-  top:0; bottom:0; left: 0; right: 0; width:100%; 
+  top:0; bottom:0; left: 0; right: 0; width:100%;
   z-index:-100;
+}
+#map.fixed {
+    position: fixed !important;
 }
 
 .post-title {
@@ -56,15 +59,17 @@ body{
 }
 
 .sidebar {
+  /*Do not set height on this
+  one otherwise scrolling will be weird*/
   background-color: #E2DFCD;
   position: absolute;
   padding: 150px 10px 0;
   width: 25%;
   z-index: 100;
   right: 0;
-  height: 100%;
   left: auto;
   box-shadow: -5px 5px 12px #777;
+  min-height: 100%;
 }
 
 .sidebar.active {

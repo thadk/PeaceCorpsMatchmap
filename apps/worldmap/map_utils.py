@@ -33,10 +33,28 @@ class Ajaxify(JSONResponseMixin, AjaxResponseMixin):
 
 def get_map_data():
     data = {
-        "countries": data_options.COUNTRY_CHOICES,
+        "countries": data_options.COUNTRIES,
+        "country_choices": data_options.COUNTRY_CHOICES,
         "states":    data_options.STATES,
         "sectors":   data_options.SECTORS,
         "keywords":  data_options.KEYWORDS,
         "grades":    data_options.GRADES
     }
     return data
+
+def make_geojson(codes):
+    features = []
+    for code in set(codes):
+        features.append({
+            'type': "Feature",
+            'geometry': {
+                'type': "Point",
+                'coordinates': data_options.COUNTRIES[code]['coords']
+            },
+            'properties': { 'title': code }
+        })
+
+    return {
+        'type': "FeatureCollection",
+        'features': features
+    }

@@ -1,5 +1,10 @@
 import os
 
+# set environment variables:
+# SECRET_KEY
+# DJANGO_ENV ("DEV" or "PRODUCTION") - defaults to DEV
+# DJANGO_DEBUG (True or False) - defaults to True in DEV, False in PRODUCTION
+
 ADMINS = (
     ('u45127', 'thadknull@gmail.com'),
 )
@@ -32,15 +37,6 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
-
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -50,6 +46,15 @@ STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = ''
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = STATIC_URL + 'media/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -68,7 +73,8 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '-tvq%*!rhbajbg)_nn1#ul55w-mhtzdhgisunqc%__ya$my%#l'
+SECRET_KEY = os.environ.get("SECRET_KEY", "this is supposed to be a secret...")
+
 
 TEMPLATE_CONTEXT_PROCESSORS = (
   'django.contrib.auth.context_processors.auth',
@@ -157,7 +163,22 @@ LOGGING = {
     }
 }
 
-DJANGO_ENV = os.environ.get("DJANGO_ENV")  # PRODUCTION, TEST, or DEV
+###############
+# Environment #
+###############
+
+
+DJANGO_ENV = os.environ.get('DJANGO_ENV', 'DEV')  # PRODUCTION, TEST, or DEV
+
+# You can set DEBUG in either setting, but it defaults to
+# True locally and False on the server
+if DJANGO_ENV == "PRODUCTION":
+    from .production import *
+else:
+    from .development import *
+
+
+TEMPLATE_DEBUG = DEBUG
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

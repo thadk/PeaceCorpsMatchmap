@@ -1,10 +1,15 @@
 from django.conf.urls import patterns, url
-from apps.pcvblog.views import EntryCreate, EntryList, EntryUpdate, TagJSON
+
+from .views import BlogJSON, Entries, Permalink, TagJSON
 
 urlpatterns = patterns('',
-    url(r'entry/list/$', EntryList.as_view(), name='entry_list'),
-    url(r'entry/create/$', EntryCreate.as_view(), name='entry_create'),
-    url(r'entry/(?P<pk>\d+)/$', EntryUpdate.as_view(), name='entry_update'),
-    url(r'entry/(?P<entry_pk>\d+)/delete/$', 'apps.pcvblog.views.entry_delete', name='entry_delete'),
-    url(r'tags/$', TagJSON.as_view(), name='tag_json'),
+
+    # utility views
+    url(r'^json/$', BlogJSON.as_view(), name='blog_json'),
+    url(r'^tags/$', TagJSON.as_view(), name='tag_json'),
+
+    # public views
+    url(r'^$', Entries.as_view(), name="blog_entries"),
+    url(r'^entry/(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/$', Permalink.as_view(), name="blog_permalink"),
+    url(r'^(?P<pcv>[\w-]+)/$', Entries.as_view(), name="blog_user_entries"),
 )

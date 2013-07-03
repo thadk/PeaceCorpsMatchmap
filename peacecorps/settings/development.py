@@ -1,6 +1,6 @@
-from common import *
+import os
 
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', "True").lower() == "true"
 
 DATABASES = {
    'default': {
@@ -17,6 +17,8 @@ STATIC_ROOT= ''
 
 MEDIA_ROOT = "media"
 MEDIA_URL = "http://localhost:8000/media/"
+
+ALLOWED_HOSTS = ['*']
 
 try:
     from localenv import *

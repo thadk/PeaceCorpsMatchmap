@@ -5,11 +5,12 @@
   <div class="search-section">
     <div class="brand">World Wise Schools</div>
     <input name="searchquery" id="searchbox" type="text" class="search-query" placeholder="Country, Keyword" tabindex="2">
+    <button id="clear_button" class="btn btn-large" type="button">Clear Search</button>
   </div>
 
   <div id="search-volunteers" class="search-section">
 
-    <button class="btn btn-large btn-primary" type="button">Hide Volunteers</button> 
+    <button class="btn btn-large btn-primary" type="button">Hide Volunteers</button>
 
     <select name="sector" data-placeholder="Sector" tabindex="2">
       <option value="" selected="selected">Sector:</option>
@@ -20,11 +21,11 @@
       {% endfor %}
     </select>
 
-    <select name="country" data-placeholder="Country" tabindex="2">
+    <select name="country" data-placeholder="Country" tabindex="2" id="country">
       <option value="" selected="selected">Country of Service:</option>
-      {% for country in data.countries %}
-        <option value="{{country.1}}">
-          {{country.0}}
+      {% for country, code in data.country_choices %}
+        <option value="{{code}}">
+          {{country}}
         </option>
       {% endfor %}
     </select>
@@ -54,10 +55,6 @@
         </option>
       {% endfor %}
     </select>
-
-  </div>
-  <div class="search-section">
-    <button id="clear_button" class="btn btn-large" type="button">Clear Search</button>
   </div>
 
 </form>
