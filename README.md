@@ -67,5 +67,7 @@ pip install django-braces
 
 Then re-run the server
 
+[Team debating a feature]
+(https://www.dropbox.com/s/4se43p1wmagflbz/2013-06-04%2020.00.18.jpg)
 
 Happy Peacecorping!
