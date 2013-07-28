@@ -56,6 +56,11 @@ class Entries(BlogFilterMixin, ListView):
     # template_name = "blog/entry_list.html"
     paginate_by = 10
 
+    def get_context_data(self, **kwargs):
+        if self.pcv:
+            kwargs.update({'pcv': self.object_list[0].author})
+        return super(Entries, self).get_context_data(**kwargs)
+
     def get_queryset(self, **kwargs):
         entries = super(Entries, self).get_queryset()
         # import pdb
