@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 
 from .views import BlogJSON, Entries, Permalink, TagJSON
 
+# prefixed by /blog/
 urlpatterns = patterns('',
 
     # utility views
