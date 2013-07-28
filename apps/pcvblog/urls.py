@@ -11,6 +11,6 @@ urlpatterns = patterns('',
 
     # public views
     url(r'^$', Entries.as_view(), name="blog_entries"),
-    url(r'^entry/(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/$', Permalink.as_view(), name="blog_permalink"),
     url(r'^(?P<pcv>[\w-]+)/$', Entries.as_view(), name="blog_user_entries"),
+    url(r'^(?P<pcv>[\w-]+)/(?P<pk>\d+)(?:-(?P<slug>[\w|\s|-]+))?/$', Permalink.as_view(), name="blog_permalink"),
 )
