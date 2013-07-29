@@ -1,0 +1,113 @@
+{
+  "bounds": [
+    -180,
+    -85.0511,
+    180,
+    85.0511
+  ],
+  "center": [
+    0,
+    0,
+    2
+  ],
+  "format": "png",
+  "interactivity": {
+    "layer": "flags",
+    "template_teaser": "<div style=\"text-align:center;\">\n\n<img src=\"data:image/png;base64,{{flag_png}}\" style=\"-moz-box-shadow:0px 1px 3px #222;-webkit-box-shadow:0px 1px 5px #222;box-shadow:0px 1px 3px #222;\"><br>\n<strong>{{admin}}</strong>\n\n</div>",
+    "template_full": "<div style=\"text-align:center;\">\n\n<img src=\"data:image/png;base64,{{flag_png}}\" style=\"-moz-box-shadow:0px 1px 3px #222;-webkit-box-shadow:0px 1px 5px #222;box-shadow:0px 1px 3px #222;\"><br>\n<strong>{{admin}}</strong>\n\n</div>",
+    "fields": [
+      "flag_png",
+      "admin"
+    ]
+  },
+  "minzoom": 2,
+  "maxzoom": 6,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        83.59960937500006
+      ],
+      "id": "maskpcv",
+      "class": "",
+      "Datasource": {
+        "file": "C:\\Users\\katrina.EARTHLINE-JKT\\Dropbox\\MatchMap\\MaskPCV.shp",
+        "id": "maskpcv",
+        "project": "peacecorps",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "maskpcv",
+      "status": "off"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        85.051
+      ],
+      "id": "activepcvcountries",
+      "class": "",
+      "Datasource": {
+        "file": "layers\\PeaceCorps.geojson"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "activepcvcountries"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        85.051
+      ],
+      "id": "flags",
+      "class": "",
+      "Datasource": {
+        "file": "layers\\PeaceCorps - Copy.geojson"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "flags"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        -157.932,
+        21.3851,
+        -70.5983118323833,
+        64.8609
+      ],
+      "id": "teachers",
+      "class": "",
+      "Datasource": {
+        "file": "C:\\Users\\katrina.EARTHLINE-JKT\\Desktop\\Sample204922042635106380803091194.csv"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "teachers"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "name": "MatchMap",
+  "description": "",
+  "attribution": "",
+  "legend": ""
+}
