@@ -9,8 +9,10 @@ from braces.views import LoginRequiredMixin, UserFormKwargsMixin
 from ..models import Entry
 from .forms import EntryForm
 
+
 class BlogLoginRequiredMixin(LoginRequiredMixin):
     login_url = reverse_lazy('login')
+
 
 class ImageUploadMixin(object):
     def get_form_kwargs(self):

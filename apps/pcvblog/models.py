@@ -19,7 +19,8 @@ class Entry(models.Model):
 
     @property
     def permalink(self):
-        return reverse("blog_permalink", args=[self.pk, self.slug])
+        return reverse("blog_permalink",
+            args=[self.author.username, self.pk, self.slug])
 
     @property
     def abstract(self):
@@ -47,4 +48,5 @@ class Entry(models.Model):
             'post_time': self.post_time,
             'grade_level': self.grade_level,
             'tags': self.tags.all(),
+            'permalink': self.permalink,
         }

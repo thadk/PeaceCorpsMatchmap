@@ -25,7 +25,7 @@ $(function() {  // On document ready
   $.postpreview = function(post) {
     var body = post["body"];
     var preview = body.substr(0, 150) + "...";
-    preview = preview + "<a onclick=''>Read more</a>";
+    preview = preview + "<a href='" + post['permalink'] + "'>Read more</a>";
     return preview;
   }
 
@@ -35,10 +35,11 @@ $(function() {  // On document ready
   $.postpartial = function(post) {
     var name = post.author.username;
     var title = post.title;
+    var link = post.permalink;
 
     var partial = "<br/><br/><div class='sidebar-post'>";
-    partial = partial + "<span class='post-title'>" + title + "</span><br/>";
-    partial = partial + "<span class='post-byline'>by <a href='" + name + "'>" + name + "</a> on " + $.date(post["post_time"]) + "</span><br/>";
+    partial = partial + "<span class='post-title'><a href='" + link + "'>" + title + "</a></span><br/>";
+    partial = partial + "<span class='post-byline'>by <a href='blog/" + name + "'>" + name + "</a> on " + $.date(post["post_time"]) + "</span><br/>";
     partial = partial + "<span class='post-body'>" + $.postpreview(post) + "</span>";
     return partial;
   }

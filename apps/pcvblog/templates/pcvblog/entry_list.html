@@ -3,8 +3,13 @@
 
 {% block content %}
 
-<h1>Blog Entries</h1>
-<hr />
+{% if pcv %}
+  {{pcv.username}}
+  This is for {{pcv.pcvprofile.country}}
+{% else %}
+  <h1>Blog Entries</h1>
+  <hr />
+{% endif %}
 
 {% for entry in entry_list %}
 <div class="blog-entry">
